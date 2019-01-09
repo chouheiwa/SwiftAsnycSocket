@@ -7,13 +7,171 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02C6352E21E60D3F0078257D /* SwiftAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 02C6352C21E60D3F0078257D /* SwiftAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02C635C621E613240078257D /* SwiftAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C6352921E60D3F0078257D /* SwiftAsyncSocket.framework */; };
+		02C635D521E613A60078257D /* SwiftAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C635A121E612230078257D /* SwiftAsyncSocket.framework */; };
+		02C6361721E614520078257D /* SwiftAsyncThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635DD21E614510078257D /* SwiftAsyncThread.swift */; };
+		02C6361821E614520078257D /* SwiftAsyncThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635DD21E614510078257D /* SwiftAsyncThread.swift */; };
+		02C6361921E614520078257D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635DF21E614510078257D /* Data.swift */; };
+		02C6361A21E614520078257D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635DF21E614510078257D /* Data.swift */; };
+		02C6361B21E614520078257D /* OptionSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E021E614510078257D /* OptionSetExtension.swift */; };
+		02C6361C21E614520078257D /* OptionSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E021E614510078257D /* OptionSetExtension.swift */; };
+		02C6361D21E614520078257D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E121E614510078257D /* String.swift */; };
+		02C6361E21E614520078257D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E121E614510078257D /* String.swift */; };
+		02C6362121E614520078257D /* SwiftAsyncSocketPreBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */; };
+		02C6362221E614520078257D /* SwiftAsyncSocketPreBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */; };
+		02C6362321E614520078257D /* SwiftAsyncSocketBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E521E614510078257D /* SwiftAsyncSocketBuffer.swift */; };
+		02C6362421E614520078257D /* SwiftAsyncSocketBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E521E614510078257D /* SwiftAsyncSocketBuffer.swift */; };
+		02C6362521E614520078257D /* SocketAddrProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E821E614510078257D /* SocketAddrProtocol.swift */; };
+		02C6362621E614520078257D /* SocketAddrProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E821E614510078257D /* SocketAddrProtocol.swift */; };
+		02C6362721E614520078257D /* SockAddrExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E921E614510078257D /* SockAddrExtension.swift */; };
+		02C6362821E614520078257D /* SockAddrExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E921E614510078257D /* SockAddrExtension.swift */; };
+		02C6362921E614520078257D /* SockDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EA21E614510078257D /* SockDataHelper.swift */; };
+		02C6362A21E614520078257D /* SockDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EA21E614510078257D /* SockDataHelper.swift */; };
+		02C6362B21E614520078257D /* SwiftAsyncSocketConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EB21E614510078257D /* SwiftAsyncSocketConfig.swift */; };
+		02C6362C21E614520078257D /* SwiftAsyncSocketConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EB21E614510078257D /* SwiftAsyncSocketConfig.swift */; };
+		02C6362D21E614520078257D /* SwiftAsyncSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EC21E614510078257D /* SwiftAsyncSocketDelegate.swift */; };
+		02C6362E21E614520078257D /* SwiftAsyncSocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EC21E614510078257D /* SwiftAsyncSocketDelegate.swift */; };
+		02C6362F21E614520078257D /* SwiftAsyncSocket+ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EF21E614510078257D /* SwiftAsyncSocket+ReadData.swift */; };
+		02C6363021E614520078257D /* SwiftAsyncSocket+ReadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635EF21E614510078257D /* SwiftAsyncSocket+ReadData.swift */; };
+		02C6363121E614520078257D /* SwiftAsyncSocket+Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F021E614510078257D /* SwiftAsyncSocket+Reading.swift */; };
+		02C6363221E614520078257D /* SwiftAsyncSocket+Reading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F021E614510078257D /* SwiftAsyncSocket+Reading.swift */; };
+		02C6363321E614520078257D /* SwiftAsyncSocket+ReadingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F121E614510078257D /* SwiftAsyncSocket+ReadingData.swift */; };
+		02C6363421E614520078257D /* SwiftAsyncSocket+ReadingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F121E614510078257D /* SwiftAsyncSocket+ReadingData.swift */; };
+		02C6363521E614520078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F221E614510078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift */; };
+		02C6363621E614520078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F221E614510078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift */; };
+		02C6363721E614520078257D /* SwiftAsyncSocket+Close.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F421E614510078257D /* SwiftAsyncSocket+Close.swift */; };
+		02C6363821E614520078257D /* SwiftAsyncSocket+Close.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F421E614510078257D /* SwiftAsyncSocket+Close.swift */; };
+		02C6363921E614520078257D /* SwiftAsyncSocket+SSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F621E614510078257D /* SwiftAsyncSocket+SSL.swift */; };
+		02C6363A21E614520078257D /* SwiftAsyncSocket+SSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F621E614510078257D /* SwiftAsyncSocket+SSL.swift */; };
+		02C6363B21E614520078257D /* SwiftAsyncSocket+Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F721E614510078257D /* SwiftAsyncSocket+Security.swift */; };
+		02C6363C21E614520078257D /* SwiftAsyncSocket+Security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F721E614510078257D /* SwiftAsyncSocket+Security.swift */; };
+		02C6363D21E614520078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F821E614510078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift */; };
+		02C6363E21E614520078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635F821E614510078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift */; };
+		02C6363F21E614520078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FA21E614510078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift */; };
+		02C6364021E614520078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FA21E614510078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift */; };
+		02C6364121E614520078257D /* SwiftAsyncSocket+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FB21E614510078257D /* SwiftAsyncSocket+Utilities.swift */; };
+		02C6364221E614520078257D /* SwiftAsyncSocket+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FB21E614510078257D /* SwiftAsyncSocket+Utilities.swift */; };
+		02C6364321E614520078257D /* SwiftAsyncSocket+CFStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FC21E614510078257D /* SwiftAsyncSocket+CFStream.swift */; };
+		02C6364421E614520078257D /* SwiftAsyncSocket+CFStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FC21E614510078257D /* SwiftAsyncSocket+CFStream.swift */; };
+		02C6364521E614520078257D /* SwiftAsyncSocket+Connecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FE21E614510078257D /* SwiftAsyncSocket+Connecting.swift */; };
+		02C6364621E614520078257D /* SwiftAsyncSocket+Connecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FE21E614510078257D /* SwiftAsyncSocket+Connecting.swift */; };
+		02C6364721E614520078257D /* SwiftAsyncSocket+LookUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FF21E614510078257D /* SwiftAsyncSocket+LookUp.swift */; };
+		02C6364821E614520078257D /* SwiftAsyncSocket+LookUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635FF21E614510078257D /* SwiftAsyncSocket+LookUp.swift */; };
+		02C6364921E614520078257D /* SwiftAsyncSocket+PreConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360021E614510078257D /* SwiftAsyncSocket+PreConnect.swift */; };
+		02C6364A21E614520078257D /* SwiftAsyncSocket+PreConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360021E614510078257D /* SwiftAsyncSocket+PreConnect.swift */; };
+		02C6364B21E614520078257D /* SwiftAsyncSocket+Sock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360121E614510078257D /* SwiftAsyncSocket+Sock.swift */; };
+		02C6364C21E614520078257D /* SwiftAsyncSocket+Sock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360121E614510078257D /* SwiftAsyncSocket+Sock.swift */; };
+		02C6364D21E614520078257D /* SwiftAsyncSocket+Advanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360321E614520078257D /* SwiftAsyncSocket+Advanced.swift */; };
+		02C6364E21E614520078257D /* SwiftAsyncSocket+Advanced.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360321E614520078257D /* SwiftAsyncSocket+Advanced.swift */; };
+		02C6364F21E614520078257D /* SwiftAsyncSocket+WriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360421E614520078257D /* SwiftAsyncSocket+WriteData.swift */; };
+		02C6365021E614520078257D /* SwiftAsyncSocket+WriteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360421E614520078257D /* SwiftAsyncSocket+WriteData.swift */; };
+		02C6365121E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360521E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift */; };
+		02C6365221E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360521E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift */; };
+		02C6365321E614520078257D /* SwiftAsyncSocket+Accepting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360621E614520078257D /* SwiftAsyncSocket+Accepting.swift */; };
+		02C6365421E614520078257D /* SwiftAsyncSocket+Accepting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360621E614520078257D /* SwiftAsyncSocket+Accepting.swift */; };
+		02C6365521E614520078257D /* SwiftAsyncSocket+OtherVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360721E614520078257D /* SwiftAsyncSocket+OtherVars.swift */; };
+		02C6365621E614520078257D /* SwiftAsyncSocket+OtherVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360721E614520078257D /* SwiftAsyncSocket+OtherVars.swift */; };
+		02C6365721E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360821E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift */; };
+		02C6365821E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360821E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift */; };
+		02C6365921E614520078257D /* SwiftAsyncSocket+Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360921E614520078257D /* SwiftAsyncSocket+Connect.swift */; };
+		02C6365A21E614520078257D /* SwiftAsyncSocket+Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360921E614520078257D /* SwiftAsyncSocket+Connect.swift */; };
+		02C6365B21E614520078257D /* SwiftAsyncSocket+Writing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360B21E614520078257D /* SwiftAsyncSocket+Writing.swift */; };
+		02C6365C21E614520078257D /* SwiftAsyncSocket+Writing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360B21E614520078257D /* SwiftAsyncSocket+Writing.swift */; };
+		02C6365D21E614520078257D /* SwiftAsyncSocket+WritingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360C21E614520078257D /* SwiftAsyncSocket+WritingData.swift */; };
+		02C6365E21E614520078257D /* SwiftAsyncSocket+WritingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360C21E614520078257D /* SwiftAsyncSocket+WritingData.swift */; };
+		02C6365F21E614520078257D /* SwiftAsyncSocketFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360D21E614520078257D /* SwiftAsyncSocketFlags.swift */; };
+		02C6366021E614520078257D /* SwiftAsyncSocketFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360D21E614520078257D /* SwiftAsyncSocketFlags.swift */; };
+		02C6366121E614520078257D /* SwiftAsyncSocketError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360E21E614520078257D /* SwiftAsyncSocketError.swift */; };
+		02C6366221E614520078257D /* SwiftAsyncSocketError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360E21E614520078257D /* SwiftAsyncSocketError.swift */; };
+		02C6366321E614520078257D /* SwiftAsyncSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360F21E614520078257D /* SwiftAsyncSocket.swift */; };
+		02C6366421E614520078257D /* SwiftAsyncSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6360F21E614520078257D /* SwiftAsyncSocket.swift */; };
+		02C6366721E614520078257D /* SwiftAsyncReadPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361321E614520078257D /* SwiftAsyncReadPacket.swift */; };
+		02C6366821E614520078257D /* SwiftAsyncReadPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361321E614520078257D /* SwiftAsyncReadPacket.swift */; };
+		02C6366921E614520078257D /* SwiftAsyncSpecialPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361421E614520078257D /* SwiftAsyncSpecialPacket.swift */; };
+		02C6366A21E614520078257D /* SwiftAsyncSpecialPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361421E614520078257D /* SwiftAsyncSpecialPacket.swift */; };
+		02C6366B21E614520078257D /* SwiftAsyncWritePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361521E614520078257D /* SwiftAsyncWritePacket.swift */; };
+		02C6366C21E614520078257D /* SwiftAsyncWritePacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361521E614520078257D /* SwiftAsyncWritePacket.swift */; };
+		02C6366D21E614520078257D /* SwiftAsyncSocketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361621E614520078257D /* SwiftAsyncSocketLog.swift */; };
+		02C6366E21E614520078257D /* SwiftAsyncSocketLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C6361621E614520078257D /* SwiftAsyncSocketLog.swift */; };
+		02C6366F21E617340078257D /* SwiftAsyncSocketReadPacketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635AA21E612A50078257D /* SwiftAsyncSocketReadPacketTest.swift */; };
+		02C6367021E617340078257D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635AB21E612A50078257D /* Server.swift */; };
+		02C6367121E617340078257D /* SwiftAsyncTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635AC21E612A50078257D /* SwiftAsyncTest.swift */; };
+		02C6367221E617350078257D /* SwiftAsyncSocketReadPacketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635AA21E612A50078257D /* SwiftAsyncSocketReadPacketTest.swift */; };
+		02C6367321E617350078257D /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635AB21E612A50078257D /* Server.swift */; };
+		02C6367421E617350078257D /* SwiftAsyncTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635AC21E612A50078257D /* SwiftAsyncTest.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		02C635C721E613240078257D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02C6352021E60D3F0078257D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02C6352821E60D3F0078257D;
+			remoteInfo = "SwiftAsyncSocket iOS";
+		};
+		02C635D621E613A60078257D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 02C6352021E60D3F0078257D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02C635A021E612230078257D;
+			remoteInfo = "SwiftAsyncSocket MacOS";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02C6352921E60D3F0078257D /* SwiftAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		02C6352C21E60D3F0078257D /* SwiftAsyncSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftAsyncSocket.h; sourceTree = "<group>"; };
-		02C6352D21E60D3F0078257D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02C635A121E612230078257D /* SwiftAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		02C635AA21E612A50078257D /* SwiftAsyncSocketReadPacketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketReadPacketTest.swift; sourceTree = "<group>"; };
+		02C635AB21E612A50078257D /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		02C635AC21E612A50078257D /* SwiftAsyncTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftAsyncTest.swift; sourceTree = "<group>"; };
+		02C635AD21E612A50078257D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02C635C121E613240078257D /* SwiftAsyncSocketTests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftAsyncSocketTests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02C635D021E613A50078257D /* SwiftAsyncSocketTests MacOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftAsyncSocketTests MacOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		02C635DD21E614510078257D /* SwiftAsyncThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncThread.swift; sourceTree = "<group>"; };
+		02C635DF21E614510078257D /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		02C635E021E614510078257D /* OptionSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionSetExtension.swift; sourceTree = "<group>"; };
+		02C635E121E614510078257D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketPreBuffer.swift; sourceTree = "<group>"; };
+		02C635E521E614510078257D /* SwiftAsyncSocketBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketBuffer.swift; sourceTree = "<group>"; };
+		02C635E821E614510078257D /* SocketAddrProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAddrProtocol.swift; sourceTree = "<group>"; };
+		02C635E921E614510078257D /* SockAddrExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SockAddrExtension.swift; sourceTree = "<group>"; };
+		02C635EA21E614510078257D /* SockDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SockDataHelper.swift; sourceTree = "<group>"; };
+		02C635EB21E614510078257D /* SwiftAsyncSocketConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketConfig.swift; sourceTree = "<group>"; };
+		02C635EC21E614510078257D /* SwiftAsyncSocketDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketDelegate.swift; sourceTree = "<group>"; };
+		02C635EF21E614510078257D /* SwiftAsyncSocket+ReadData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+ReadData.swift"; sourceTree = "<group>"; };
+		02C635F021E614510078257D /* SwiftAsyncSocket+Reading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Reading.swift"; sourceTree = "<group>"; };
+		02C635F121E614510078257D /* SwiftAsyncSocket+ReadingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+ReadingData.swift"; sourceTree = "<group>"; };
+		02C635F221E614510078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+ReadingDataPrivate.swift"; sourceTree = "<group>"; };
+		02C635F421E614510078257D /* SwiftAsyncSocket+Close.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Close.swift"; sourceTree = "<group>"; };
+		02C635F621E614510078257D /* SwiftAsyncSocket+SSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+SSL.swift"; sourceTree = "<group>"; };
+		02C635F721E614510078257D /* SwiftAsyncSocket+Security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Security.swift"; sourceTree = "<group>"; };
+		02C635F821E614510078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+SecurityViaSecureTransport.swift"; sourceTree = "<group>"; };
+		02C635FA21E614510078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+UtilitiesGetInterface.swift"; sourceTree = "<group>"; };
+		02C635FB21E614510078257D /* SwiftAsyncSocket+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Utilities.swift"; sourceTree = "<group>"; };
+		02C635FC21E614510078257D /* SwiftAsyncSocket+CFStream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+CFStream.swift"; sourceTree = "<group>"; };
+		02C635FE21E614510078257D /* SwiftAsyncSocket+Connecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Connecting.swift"; sourceTree = "<group>"; };
+		02C635FF21E614510078257D /* SwiftAsyncSocket+LookUp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+LookUp.swift"; sourceTree = "<group>"; };
+		02C6360021E614510078257D /* SwiftAsyncSocket+PreConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+PreConnect.swift"; sourceTree = "<group>"; };
+		02C6360121E614510078257D /* SwiftAsyncSocket+Sock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Sock.swift"; sourceTree = "<group>"; };
+		02C6360321E614520078257D /* SwiftAsyncSocket+Advanced.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Advanced.swift"; sourceTree = "<group>"; };
+		02C6360421E614520078257D /* SwiftAsyncSocket+WriteData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+WriteData.swift"; sourceTree = "<group>"; };
+		02C6360521E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+SecurityFunc.swift"; sourceTree = "<group>"; };
+		02C6360621E614520078257D /* SwiftAsyncSocket+Accepting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Accepting.swift"; sourceTree = "<group>"; };
+		02C6360721E614520078257D /* SwiftAsyncSocket+OtherVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+OtherVars.swift"; sourceTree = "<group>"; };
+		02C6360821E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+ClassUtilities.swift"; sourceTree = "<group>"; };
+		02C6360921E614520078257D /* SwiftAsyncSocket+Connect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Connect.swift"; sourceTree = "<group>"; };
+		02C6360B21E614520078257D /* SwiftAsyncSocket+Writing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+Writing.swift"; sourceTree = "<group>"; };
+		02C6360C21E614520078257D /* SwiftAsyncSocket+WritingData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncSocket+WritingData.swift"; sourceTree = "<group>"; };
+		02C6360D21E614520078257D /* SwiftAsyncSocketFlags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketFlags.swift; sourceTree = "<group>"; };
+		02C6360E21E614520078257D /* SwiftAsyncSocketError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketError.swift; sourceTree = "<group>"; };
+		02C6360F21E614520078257D /* SwiftAsyncSocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocket.swift; sourceTree = "<group>"; };
+		02C6361121E614520078257D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02C6361321E614520078257D /* SwiftAsyncReadPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncReadPacket.swift; sourceTree = "<group>"; };
+		02C6361421E614520078257D /* SwiftAsyncSpecialPacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSpecialPacket.swift; sourceTree = "<group>"; };
+		02C6361521E614520078257D /* SwiftAsyncWritePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncWritePacket.swift; sourceTree = "<group>"; };
+		02C6361621E614520078257D /* SwiftAsyncSocketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketLog.swift; sourceTree = "<group>"; };
+		02C6367A21E619100078257D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		02C6367B21E619110078257D /* SwiftAsyncSocket.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftAsyncSocket.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,13 +182,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		02C6359E21E612230078257D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C635BE21E613240078257D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C635C621E613240078257D /* SwiftAsyncSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C635CD21E613A50078257D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C635D521E613A60078257D /* SwiftAsyncSocket.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		02C6351F21E60D3F0078257D = {
 			isa = PBXGroup;
 			children = (
-				02C6352B21E60D3F0078257D /* SwiftAsyncSocket */,
+				02C6367A21E619100078257D /* README.md */,
+				02C6367B21E619110078257D /* SwiftAsyncSocket.podspec */,
+				02C635DB21E614510078257D /* Sources */,
+				02C635A921E612A50078257D /* Tests */,
 				02C6352A21E60D3F0078257D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -39,17 +223,192 @@
 			isa = PBXGroup;
 			children = (
 				02C6352921E60D3F0078257D /* SwiftAsyncSocket.framework */,
+				02C635A121E612230078257D /* SwiftAsyncSocket.framework */,
+				02C635C121E613240078257D /* SwiftAsyncSocketTests iOS.xctest */,
+				02C635D021E613A50078257D /* SwiftAsyncSocketTests MacOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		02C6352B21E60D3F0078257D /* SwiftAsyncSocket */ = {
+		02C635A921E612A50078257D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				02C6352C21E60D3F0078257D /* SwiftAsyncSocket.h */,
-				02C6352D21E60D3F0078257D /* Info.plist */,
+				02C635AA21E612A50078257D /* SwiftAsyncSocketReadPacketTest.swift */,
+				02C635AB21E612A50078257D /* Server.swift */,
+				02C635AC21E612A50078257D /* SwiftAsyncTest.swift */,
+				02C635AD21E612A50078257D /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		02C635DB21E614510078257D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				02C635DC21E614510078257D /* PhoneThread */,
+				02C635DE21E614510078257D /* DataExtension */,
+				02C635E321E614510078257D /* PreBuffer */,
+				02C635E621E614510078257D /* SwiftAsyncSocket */,
+				02C6361021E614520078257D /* SupportingFiles */,
+				02C6361221E614520078257D /* Packet */,
+				02C6361621E614520078257D /* SwiftAsyncSocketLog.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		02C635DC21E614510078257D /* PhoneThread */ = {
+			isa = PBXGroup;
+			children = (
+				02C635DD21E614510078257D /* SwiftAsyncThread.swift */,
+			);
+			path = PhoneThread;
+			sourceTree = "<group>";
+		};
+		02C635DE21E614510078257D /* DataExtension */ = {
+			isa = PBXGroup;
+			children = (
+				02C635DF21E614510078257D /* Data.swift */,
+				02C635E021E614510078257D /* OptionSetExtension.swift */,
+				02C635E121E614510078257D /* String.swift */,
+			);
+			path = DataExtension;
+			sourceTree = "<group>";
+		};
+		02C635E321E614510078257D /* PreBuffer */ = {
+			isa = PBXGroup;
+			children = (
+				02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */,
+				02C635E521E614510078257D /* SwiftAsyncSocketBuffer.swift */,
+			);
+			path = PreBuffer;
+			sourceTree = "<group>";
+		};
+		02C635E621E614510078257D /* SwiftAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				02C635E721E614510078257D /* SocketAddrExtension */,
+				02C635EB21E614510078257D /* SwiftAsyncSocketConfig.swift */,
+				02C635EC21E614510078257D /* SwiftAsyncSocketDelegate.swift */,
+				02C635ED21E614510078257D /* SwiftAsyncSocketExtensions */,
+				02C6360D21E614520078257D /* SwiftAsyncSocketFlags.swift */,
+				02C6360E21E614520078257D /* SwiftAsyncSocketError.swift */,
+				02C6360F21E614520078257D /* SwiftAsyncSocket.swift */,
 			);
 			path = SwiftAsyncSocket;
+			sourceTree = "<group>";
+		};
+		02C635E721E614510078257D /* SocketAddrExtension */ = {
+			isa = PBXGroup;
+			children = (
+				02C635E821E614510078257D /* SocketAddrProtocol.swift */,
+				02C635E921E614510078257D /* SockAddrExtension.swift */,
+				02C635EA21E614510078257D /* SockDataHelper.swift */,
+			);
+			path = SocketAddrExtension;
+			sourceTree = "<group>";
+		};
+		02C635ED21E614510078257D /* SwiftAsyncSocketExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				02C635EE21E614510078257D /* Reading */,
+				02C635F321E614510078257D /* Close */,
+				02C635F521E614510078257D /* Security */,
+				02C635F921E614510078257D /* Utilities */,
+				02C635FC21E614510078257D /* SwiftAsyncSocket+CFStream.swift */,
+				02C635FD21E614510078257D /* Connecting */,
+				02C6360221E614520078257D /* PublicFiles */,
+				02C6360A21E614520078257D /* Writing */,
+			);
+			path = SwiftAsyncSocketExtensions;
+			sourceTree = "<group>";
+		};
+		02C635EE21E614510078257D /* Reading */ = {
+			isa = PBXGroup;
+			children = (
+				02C635EF21E614510078257D /* SwiftAsyncSocket+ReadData.swift */,
+				02C635F021E614510078257D /* SwiftAsyncSocket+Reading.swift */,
+				02C635F121E614510078257D /* SwiftAsyncSocket+ReadingData.swift */,
+				02C635F221E614510078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift */,
+			);
+			path = Reading;
+			sourceTree = "<group>";
+		};
+		02C635F321E614510078257D /* Close */ = {
+			isa = PBXGroup;
+			children = (
+				02C635F421E614510078257D /* SwiftAsyncSocket+Close.swift */,
+			);
+			path = Close;
+			sourceTree = "<group>";
+		};
+		02C635F521E614510078257D /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				02C635F621E614510078257D /* SwiftAsyncSocket+SSL.swift */,
+				02C635F721E614510078257D /* SwiftAsyncSocket+Security.swift */,
+				02C635F821E614510078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		02C635F921E614510078257D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				02C635FA21E614510078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift */,
+				02C635FB21E614510078257D /* SwiftAsyncSocket+Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		02C635FD21E614510078257D /* Connecting */ = {
+			isa = PBXGroup;
+			children = (
+				02C635FE21E614510078257D /* SwiftAsyncSocket+Connecting.swift */,
+				02C635FF21E614510078257D /* SwiftAsyncSocket+LookUp.swift */,
+				02C6360021E614510078257D /* SwiftAsyncSocket+PreConnect.swift */,
+				02C6360121E614510078257D /* SwiftAsyncSocket+Sock.swift */,
+			);
+			path = Connecting;
+			sourceTree = "<group>";
+		};
+		02C6360221E614520078257D /* PublicFiles */ = {
+			isa = PBXGroup;
+			children = (
+				02C6360321E614520078257D /* SwiftAsyncSocket+Advanced.swift */,
+				02C6360421E614520078257D /* SwiftAsyncSocket+WriteData.swift */,
+				02C6360521E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift */,
+				02C6360621E614520078257D /* SwiftAsyncSocket+Accepting.swift */,
+				02C6360721E614520078257D /* SwiftAsyncSocket+OtherVars.swift */,
+				02C6360821E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift */,
+				02C6360921E614520078257D /* SwiftAsyncSocket+Connect.swift */,
+			);
+			path = PublicFiles;
+			sourceTree = "<group>";
+		};
+		02C6360A21E614520078257D /* Writing */ = {
+			isa = PBXGroup;
+			children = (
+				02C6360B21E614520078257D /* SwiftAsyncSocket+Writing.swift */,
+				02C6360C21E614520078257D /* SwiftAsyncSocket+WritingData.swift */,
+			);
+			path = Writing;
+			sourceTree = "<group>";
+		};
+		02C6361021E614520078257D /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				02C6361121E614520078257D /* Info.plist */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		02C6361221E614520078257D /* Packet */ = {
+			isa = PBXGroup;
+			children = (
+				02C6361321E614520078257D /* SwiftAsyncReadPacket.swift */,
+				02C6361421E614520078257D /* SwiftAsyncSpecialPacket.swift */,
+				02C6361521E614520078257D /* SwiftAsyncWritePacket.swift */,
+			);
+			path = Packet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -59,16 +418,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02C6352E21E60D3F0078257D /* SwiftAsyncSocket.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C6359C21E612230078257D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		02C6352821E60D3F0078257D /* SwiftAsyncSocket */ = {
+		02C6352821E60D3F0078257D /* SwiftAsyncSocket iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02C6353121E60D3F0078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocket" */;
+			buildConfigurationList = 02C6353121E60D3F0078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocket iOS" */;
 			buildPhases = (
 				02C6352421E60D3F0078257D /* Headers */,
 				02C6352521E60D3F0078257D /* Sources */,
@@ -79,10 +444,64 @@
 			);
 			dependencies = (
 			);
-			name = SwiftAsyncSocket;
+			name = "SwiftAsyncSocket iOS";
 			productName = SwiftAsyncSocket;
 			productReference = 02C6352921E60D3F0078257D /* SwiftAsyncSocket.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		02C635A021E612230078257D /* SwiftAsyncSocket MacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02C635A621E612230078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocket MacOS" */;
+			buildPhases = (
+				02C6359C21E612230078257D /* Headers */,
+				02C6359D21E612230078257D /* Sources */,
+				02C6359E21E612230078257D /* Frameworks */,
+				02C6359F21E612230078257D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "SwiftAsyncSocket MacOS";
+			productName = "SwiftAsyncSocket MacOS";
+			productReference = 02C635A121E612230078257D /* SwiftAsyncSocket.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		02C635C021E613240078257D /* SwiftAsyncSocketTests iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02C635C921E613240078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocketTests iOS" */;
+			buildPhases = (
+				02C635BD21E613240078257D /* Sources */,
+				02C635BE21E613240078257D /* Frameworks */,
+				02C635BF21E613240078257D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02C635C821E613240078257D /* PBXTargetDependency */,
+			);
+			name = "SwiftAsyncSocketTests iOS";
+			productName = SwiftAsyncSocketTestsiOS;
+			productReference = 02C635C121E613240078257D /* SwiftAsyncSocketTests iOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		02C635CF21E613A50078257D /* SwiftAsyncSocketTests MacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02C635D821E613A60078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocketTests MacOS" */;
+			buildPhases = (
+				02C635CC21E613A50078257D /* Sources */,
+				02C635CD21E613A50078257D /* Frameworks */,
+				02C635CE21E613A50078257D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				02C635D721E613A60078257D /* PBXTargetDependency */,
+			);
+			name = "SwiftAsyncSocketTests MacOS";
+			productName = SwiftAsyncSocketTestsMacOS;
+			productReference = 02C635D021E613A50078257D /* SwiftAsyncSocketTests MacOS.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -90,10 +509,20 @@
 		02C6352021E60D3F0078257D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = chouheiwa;
 				TargetAttributes = {
 					02C6352821E60D3F0078257D = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					02C635A021E612230078257D = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					02C635C021E613240078257D = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					02C635CF21E613A50078257D = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -110,13 +539,37 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				02C6352821E60D3F0078257D /* SwiftAsyncSocket */,
+				02C6352821E60D3F0078257D /* SwiftAsyncSocket iOS */,
+				02C635A021E612230078257D /* SwiftAsyncSocket MacOS */,
+				02C635C021E613240078257D /* SwiftAsyncSocketTests iOS */,
+				02C635CF21E613A50078257D /* SwiftAsyncSocketTests MacOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		02C6352721E60D3F0078257D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C6359F21E612230078257D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C635BF21E613240078257D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C635CE21E613A50078257D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -130,10 +583,134 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02C6364321E614520078257D /* SwiftAsyncSocket+CFStream.swift in Sources */,
+				02C6364721E614520078257D /* SwiftAsyncSocket+LookUp.swift in Sources */,
+				02C6364921E614520078257D /* SwiftAsyncSocket+PreConnect.swift in Sources */,
+				02C6366321E614520078257D /* SwiftAsyncSocket.swift in Sources */,
+				02C6365521E614520078257D /* SwiftAsyncSocket+OtherVars.swift in Sources */,
+				02C6364B21E614520078257D /* SwiftAsyncSocket+Sock.swift in Sources */,
+				02C6362921E614520078257D /* SockDataHelper.swift in Sources */,
+				02C6361B21E614520078257D /* OptionSetExtension.swift in Sources */,
+				02C6366D21E614520078257D /* SwiftAsyncSocketLog.swift in Sources */,
+				02C6363D21E614520078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift in Sources */,
+				02C6365121E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift in Sources */,
+				02C6364121E614520078257D /* SwiftAsyncSocket+Utilities.swift in Sources */,
+				02C6363F21E614520078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift in Sources */,
+				02C6366921E614520078257D /* SwiftAsyncSpecialPacket.swift in Sources */,
+				02C6365F21E614520078257D /* SwiftAsyncSocketFlags.swift in Sources */,
+				02C6365D21E614520078257D /* SwiftAsyncSocket+WritingData.swift in Sources */,
+				02C6366B21E614520078257D /* SwiftAsyncWritePacket.swift in Sources */,
+				02C6366721E614520078257D /* SwiftAsyncReadPacket.swift in Sources */,
+				02C6363521E614520078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift in Sources */,
+				02C6363B21E614520078257D /* SwiftAsyncSocket+Security.swift in Sources */,
+				02C6362D21E614520078257D /* SwiftAsyncSocketDelegate.swift in Sources */,
+				02C6364521E614520078257D /* SwiftAsyncSocket+Connecting.swift in Sources */,
+				02C6365321E614520078257D /* SwiftAsyncSocket+Accepting.swift in Sources */,
+				02C6361721E614520078257D /* SwiftAsyncThread.swift in Sources */,
+				02C6365721E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift in Sources */,
+				02C6363921E614520078257D /* SwiftAsyncSocket+SSL.swift in Sources */,
+				02C6362B21E614520078257D /* SwiftAsyncSocketConfig.swift in Sources */,
+				02C6365921E614520078257D /* SwiftAsyncSocket+Connect.swift in Sources */,
+				02C6362721E614520078257D /* SockAddrExtension.swift in Sources */,
+				02C6363121E614520078257D /* SwiftAsyncSocket+Reading.swift in Sources */,
+				02C6364F21E614520078257D /* SwiftAsyncSocket+WriteData.swift in Sources */,
+				02C6366121E614520078257D /* SwiftAsyncSocketError.swift in Sources */,
+				02C6361D21E614520078257D /* String.swift in Sources */,
+				02C6362521E614520078257D /* SocketAddrProtocol.swift in Sources */,
+				02C6365B21E614520078257D /* SwiftAsyncSocket+Writing.swift in Sources */,
+				02C6364D21E614520078257D /* SwiftAsyncSocket+Advanced.swift in Sources */,
+				02C6362321E614520078257D /* SwiftAsyncSocketBuffer.swift in Sources */,
+				02C6361921E614520078257D /* Data.swift in Sources */,
+				02C6363721E614520078257D /* SwiftAsyncSocket+Close.swift in Sources */,
+				02C6362121E614520078257D /* SwiftAsyncSocketPreBuffer.swift in Sources */,
+				02C6363321E614520078257D /* SwiftAsyncSocket+ReadingData.swift in Sources */,
+				02C6362F21E614520078257D /* SwiftAsyncSocket+ReadData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C6359D21E612230078257D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C6364421E614520078257D /* SwiftAsyncSocket+CFStream.swift in Sources */,
+				02C6364821E614520078257D /* SwiftAsyncSocket+LookUp.swift in Sources */,
+				02C6364A21E614520078257D /* SwiftAsyncSocket+PreConnect.swift in Sources */,
+				02C6366421E614520078257D /* SwiftAsyncSocket.swift in Sources */,
+				02C6365621E614520078257D /* SwiftAsyncSocket+OtherVars.swift in Sources */,
+				02C6364C21E614520078257D /* SwiftAsyncSocket+Sock.swift in Sources */,
+				02C6362A21E614520078257D /* SockDataHelper.swift in Sources */,
+				02C6361C21E614520078257D /* OptionSetExtension.swift in Sources */,
+				02C6366E21E614520078257D /* SwiftAsyncSocketLog.swift in Sources */,
+				02C6363E21E614520078257D /* SwiftAsyncSocket+SecurityViaSecureTransport.swift in Sources */,
+				02C6365221E614520078257D /* SwiftAsyncSocket+SecurityFunc.swift in Sources */,
+				02C6364221E614520078257D /* SwiftAsyncSocket+Utilities.swift in Sources */,
+				02C6364021E614520078257D /* SwiftAsyncSocket+UtilitiesGetInterface.swift in Sources */,
+				02C6366A21E614520078257D /* SwiftAsyncSpecialPacket.swift in Sources */,
+				02C6366021E614520078257D /* SwiftAsyncSocketFlags.swift in Sources */,
+				02C6365E21E614520078257D /* SwiftAsyncSocket+WritingData.swift in Sources */,
+				02C6366C21E614520078257D /* SwiftAsyncWritePacket.swift in Sources */,
+				02C6366821E614520078257D /* SwiftAsyncReadPacket.swift in Sources */,
+				02C6363621E614520078257D /* SwiftAsyncSocket+ReadingDataPrivate.swift in Sources */,
+				02C6363C21E614520078257D /* SwiftAsyncSocket+Security.swift in Sources */,
+				02C6362E21E614520078257D /* SwiftAsyncSocketDelegate.swift in Sources */,
+				02C6364621E614520078257D /* SwiftAsyncSocket+Connecting.swift in Sources */,
+				02C6365421E614520078257D /* SwiftAsyncSocket+Accepting.swift in Sources */,
+				02C6361821E614520078257D /* SwiftAsyncThread.swift in Sources */,
+				02C6365821E614520078257D /* SwiftAsyncSocket+ClassUtilities.swift in Sources */,
+				02C6363A21E614520078257D /* SwiftAsyncSocket+SSL.swift in Sources */,
+				02C6362C21E614520078257D /* SwiftAsyncSocketConfig.swift in Sources */,
+				02C6365A21E614520078257D /* SwiftAsyncSocket+Connect.swift in Sources */,
+				02C6362821E614520078257D /* SockAddrExtension.swift in Sources */,
+				02C6363221E614520078257D /* SwiftAsyncSocket+Reading.swift in Sources */,
+				02C6365021E614520078257D /* SwiftAsyncSocket+WriteData.swift in Sources */,
+				02C6366221E614520078257D /* SwiftAsyncSocketError.swift in Sources */,
+				02C6361E21E614520078257D /* String.swift in Sources */,
+				02C6362621E614520078257D /* SocketAddrProtocol.swift in Sources */,
+				02C6365C21E614520078257D /* SwiftAsyncSocket+Writing.swift in Sources */,
+				02C6364E21E614520078257D /* SwiftAsyncSocket+Advanced.swift in Sources */,
+				02C6362421E614520078257D /* SwiftAsyncSocketBuffer.swift in Sources */,
+				02C6361A21E614520078257D /* Data.swift in Sources */,
+				02C6363821E614520078257D /* SwiftAsyncSocket+Close.swift in Sources */,
+				02C6362221E614520078257D /* SwiftAsyncSocketPreBuffer.swift in Sources */,
+				02C6363421E614520078257D /* SwiftAsyncSocket+ReadingData.swift in Sources */,
+				02C6363021E614520078257D /* SwiftAsyncSocket+ReadData.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C635BD21E613240078257D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C6367021E617340078257D /* Server.swift in Sources */,
+				02C6367121E617340078257D /* SwiftAsyncTest.swift in Sources */,
+				02C6366F21E617340078257D /* SwiftAsyncSocketReadPacketTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02C635CC21E613A50078257D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02C6367321E617350078257D /* Server.swift in Sources */,
+				02C6367421E617350078257D /* SwiftAsyncTest.swift in Sources */,
+				02C6367221E617350078257D /* SwiftAsyncSocketReadPacketTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02C635C821E613240078257D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02C6352821E60D3F0078257D /* SwiftAsyncSocket iOS */;
+			targetProxy = 02C635C721E613240078257D /* PBXContainerItemProxy */;
+		};
+		02C635D721E613A60078257D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02C635A021E612230078257D /* SwiftAsyncSocket MacOS */;
+			targetProxy = 02C635D621E613A60078257D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		02C6352F21E60D3F0078257D /* Debug */ = {
@@ -188,6 +765,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Sources/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -246,6 +824,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Sources/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -268,7 +847,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SwiftAsyncSocket/Info.plist;
+				INFOPLIST_FILE = Sources/SupportingFiles/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -276,7 +855,8 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocket;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_MODULE_NAME = SwiftAsyncSocket;
+				PRODUCT_NAME = SwiftAsyncSocket;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -293,7 +873,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SwiftAsyncSocket/Info.plist;
+				INFOPLIST_FILE = Sources/SupportingFiles/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -301,10 +881,151 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocket;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_MODULE_NAME = SwiftAsyncSocket;
+				PRODUCT_NAME = SwiftAsyncSocket;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		02C635A721E612230078257D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2UNAYZPR4S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Sources/SupportingFiles/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocket;
+				PRODUCT_MODULE_NAME = SwiftAsyncSocket;
+				PRODUCT_NAME = SwiftAsyncSocket;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		02C635A821E612230078257D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 2UNAYZPR4S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Sources/SupportingFiles/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocket;
+				PRODUCT_MODULE_NAME = SwiftAsyncSocket;
+				PRODUCT_NAME = SwiftAsyncSocket;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		02C635CA21E613240078257D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2UNAYZPR4S;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		02C635CB21E613240078257D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2UNAYZPR4S;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		02C635D921E613A60078257D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2UNAYZPR4S;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		02C635DA21E613A60078257D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 2UNAYZPR4S;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocketTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -320,11 +1041,38 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02C6353121E60D3F0078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocket" */ = {
+		02C6353121E60D3F0078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocket iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02C6353221E60D3F0078257D /* Debug */,
 				02C6353321E60D3F0078257D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02C635A621E612230078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocket MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02C635A721E612230078257D /* Debug */,
+				02C635A821E612230078257D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02C635C921E613240078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocketTests iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02C635CA21E613240078257D /* Debug */,
+				02C635CB21E613240078257D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		02C635D821E613A60078257D /* Build configuration list for PBXNativeTarget "SwiftAsyncSocketTests MacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02C635D921E613A60078257D /* Debug */,
+				02C635DA21E613A60078257D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

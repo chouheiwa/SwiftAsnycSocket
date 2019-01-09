@@ -4,10 +4,58 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>SwiftAsyncSocket MacOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>SwiftAsyncSocket.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>SwiftAsyncSocketTests 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>SwiftAsyncSocketTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>SwiftAsyncSocketTestsMacOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>SwiftAsyncSocketTestsiOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>02C6352821E60D3F0078257D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>02C635A021E612230078257D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>02C635C021E613240078257D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>02C635CF21E613A50078257D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
