@@ -1,4 +1,6 @@
-## SwiftAsyncSocket
+# SwiftAsyncSocket
+ [![Version Status](https://img.shields.io/cocoapods/v/SwiftAsyncSocket.svg?style=flat)](http://cocoadocs.org/docsets/SwiftAsyncSocket) [![Platform](http://img.shields.io/cocoapods/p/SwiftAsyncSocket.svg?style=flat)](http://cocoapods.org/?q=SwiftAsyncSocket) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) ![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)
+
 SwiftAsyncSocket is a socket connnection tool based on GCD with full implement by **Swift**. 
 
 I translated it from [CocoaAsyncSocket](https://github.com/robbiehanson/CocoaAsyncSocket).
@@ -12,6 +14,7 @@ Now **SwiftAsyncSocket** only support TCP/IP socket. I will continue to improve 
 **SwiftAsyncSocket** has already passed **SwiftLint** check.
 
 ## Installation
+### 1. Mannual install
 **SwiftAsyncSocket** will soon support **Cocoapods**
 
 So now you can only use this by those steps.
@@ -22,10 +25,24 @@ git clone https://github.com/chouheiwa/SwiftAsnycSocket.git
 
 cd SwiftAsnycSocket
 
-pod install
+open ./SwiftAsyncSocket.xcodeproj
 ```
 
-Then open workspace file. And use `cmd + b` to build a framework. Finally copy it to your work.
+Then open xcodeproj file. And use `cmd + b` to build a framework. Finally copy it to your work.
+### 2. CocoaPods
+Install using [CocoaPods](http://cocoapods.org) by adding this line to your Podfile:
+
+````ruby
+use_frameworks! # Add this if you are targeting iOS 8+ or using Swift
+pod 'SwiftAsyncSocket'  
+````
+### 3.Carthage
+SwiftAsyncSocket is [Carthage](https://github.com/Carthage/Carthage) compatible. To include it add the following line to your `Cartfile`
+
+```bash
+github "chouheiwa/SwiftAsyncSocket"
+```
+
 
 ## Usage
 #### TCP/IP
@@ -143,4 +160,4 @@ class Server: SwiftAsyncSocketDelegate {
 
 #### UDP
 
-Comming soon
+Coming soon
