@@ -21,18 +21,6 @@ extension sockaddr {
         }
     }
 
-    mutating func copyToSockaddr_in6() -> sockaddr_in6 {
-        let length = 28
-
-        return withUnsafeMutablePointer(to: &self) {
-            return Data(bytes: $0, count: length).withUnsafeBytes({ (buffer: UnsafePointer<sockaddr>) -> sockaddr_in6 in
-                return buffer.withMemoryRebound(to: sockaddr_in6.self, capacity: 1, {
-                    $0.pointee
-                })
-            })
-        }
-    }
-
     static func getSock(fromLocalHost port: UInt16) -> (sockaddr_in, sockaddr_in6) {
         return self.getSock(isLoopback: true, port: port)
     }
@@ -42,21 +30,15 @@ extension sockaddr {
     }
 
     static func getSockData(fromLocalHost port: UInt16) -> (Data, Data) {
-        var (sockaddr4, sockaddr6) = sockaddr.getSock(fromLocalHost: port)
+        let (sockaddr4, sockaddr6) = sockaddr.getSock(fromLocalHost: port)
 
-        return (Data(bytes: &sockaddr4,
-                     count: MemoryLayout.size(ofValue: sockaddr4)),
-                Data(bytes: &sockaddr6,
-                     count: MemoryLayout.size(ofValue: sockaddr6)))
+        return (sockaddr4.data, sockaddr6.data)
     }
 
     static func getSockData(fromAny port: UInt16) -> (Data, Data) {
-        var (sockaddr4, sockaddr6) = sockaddr.getSock(fromAny: port)
+        let (sockaddr4, sockaddr6) = sockaddr.getSock(fromAny: port)
 
-        return (Data(bytes: &sockaddr4,
-                     count: MemoryLayout.size(ofValue: sockaddr4)),
-                Data(bytes: &sockaddr6,
-                     count: MemoryLayout.size(ofValue: sockaddr6)))
+        return (sockaddr4.data, sockaddr6.data)
     }
 
     private static func getSock(isLoopback: Bool,

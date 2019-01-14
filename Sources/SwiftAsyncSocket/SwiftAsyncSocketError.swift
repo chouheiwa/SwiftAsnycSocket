@@ -67,7 +67,6 @@ enum SwiftAsyncSocketAssertError: CustomStringConvertible {
 }
 
 public enum SwiftAsyncSocketError: Swift.Error {
-
     case readMaxedOut
 
     case badConfig(msg: String)

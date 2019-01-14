@@ -155,6 +155,7 @@ public protocol SwiftAsyncSocketDelegate: class {
 }
 
 // MARK: - Default Implement if you don't want to hook, if you want to hook, then implement these public functions
+// We use extension to make it can be optional
 //       - 为协议完成默认实现。如果你希望启用某些方法，可以对方法进行覆写
 public extension SwiftAsyncSocketDelegate {
     public func newSocketQueueForConnection(from address: Data,

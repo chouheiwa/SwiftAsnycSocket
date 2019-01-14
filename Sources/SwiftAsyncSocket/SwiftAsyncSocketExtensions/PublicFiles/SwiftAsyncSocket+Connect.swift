@@ -86,7 +86,7 @@ extension SwiftAsyncSocket {
             guard let `self` = self else { return }
 
             do {
-                let dataType = try SwiftAsyncSocket.lookup(host: host, port: port)
+                let dataType = try SocketDataType.lookup(host: host, port: port)
 
                 self.socketQueue.async {
                     self.lookup(stateIndex,

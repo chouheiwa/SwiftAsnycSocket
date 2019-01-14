@@ -188,20 +188,20 @@ extension SwiftAsyncSocket {
     }
 
     private func acceptInterfaceNeedDone(_ interface: String?, port: UInt16) throws -> Bool {
-        let (interface4, interface6) = try acceptDoneInterfaceGuard(interface: interface, port: port)
+        let type = try acceptDoneInterfaceGuard(interface: interface, port: port)
 
         var ipv4Enable = false
         var ipv6Enable = false
 
-        if let interface4 = interface4, (self.isIPv4Enabled) {
-
-            self.socket4FD = try createSocket(domain: AF_INET, interfaceAddr: interface4)
+        let createSocket4Block: (Data) throws -> Bool = { (interface4: Data) in
+            self.socket4FD = try self.createSocket(domain: AF_INET, interfaceAddr: interface4)
 
             guard self.socket4FD != SwiftAsyncSocketKeys.socketNull else { return false }
             ipv4Enable = true
+            return true
         }
 
-        if let interface6 = interface6, (self.isIPv6Enabled) {
+        let createSocket6Block: (Data) throws -> Bool = { (interface6: Data) in
             if self.isIPv4Enabled && port == 0 {
                 guard let addr6 = sockaddr_in6.convertFromData(interface6) else {
                     assert(false, "Logic Error Here")
@@ -211,15 +211,34 @@ extension SwiftAsyncSocket {
                 addr6.pointee.sin6_port = CFSwapInt16HostToBig(self.localPort4)
             }
 
-            self.socket6FD = try createSocket(domain: AF_INET6, interfaceAddr: interface6)
+            self.socket6FD = try self.createSocket(domain: AF_INET6, interfaceAddr: interface6)
 
             guard self.socket6FD != SwiftAsyncSocketKeys.socketNull else {
                 if self.socket4FD != SwiftAsyncSocketKeys.socketNull {
-                    Darwin.close(socket4FD)
+                    Darwin.close(self.socket4FD)
                 }
                 return false
             }
             ipv6Enable = true
+            return true
+        }
+
+        switch type {
+        case .IPv4Data(let data):
+            guard try createSocket4Block(data) else {
+                return false
+            }
+        case .IPv6Data(let data):
+            guard try createSocket6Block(data) else {
+                return false
+            }
+        case .bothData(let ipv4, let ipv6):
+            guard try createSocket4Block(ipv4) else {
+                return false
+            }
+            guard try createSocket6Block(ipv6) else {
+                return false
+            }
         }
 
         if ipv4Enable {
@@ -268,25 +287,28 @@ extension SwiftAsyncSocket {
         }
     }
 
-    func acceptDoneInterfaceGuard(interface: String?, port: UInt16) throws -> (Data?, Data?) {
-        let (interface4, interface6) = self.getInterfaceAddress(interface: interface ?? "", port: port)
-
-        guard interface4 != nil || interface6 != nil else {
+    func acceptDoneInterfaceGuard(interface: String?, port: UInt16) throws -> SocketDataType {
+        guard let type = SocketDataType.getInterfaceAddress(interface: interface ?? "",
+                                                            port: port) else {
             throw SwiftAsyncSocketError.badParamError(
                 "Unknown interface. Specify valid interface by name (e.g. \"en1\") or IP address.")
         }
-
-        guard isIPv4Enabled || interface6 != nil else {
-            throw SwiftAsyncSocketError.badParamError(
-                "IPv4 has been disabled and specified interface doesn't support IPv6.")
+        switch type {
+        case .IPv4Data:
+            guard isIPv4Enabled else {
+                throw SwiftAsyncSocketError.badParamError(
+                    "IPv4 has been disabled and specified interface doesn't support IPv6.")
+            }
+        case .IPv6Data:
+            guard isIPv6Enabled else {
+                throw SwiftAsyncSocketError.badParamError(
+                    "IPv6 has been disabled and specified interface doesn't support IPv4.")
+            }
+        default:
+            break
         }
 
-        guard isIPv6Enabled || interface4 != nil else {
-            throw SwiftAsyncSocketError.badParamError(
-                "IPv4 has been disabled and specified interface doesn't support IPv4.")
-        }
-
-        return (interface4, interface6)
+        return type
     }
 
     private func acceptDoneUrlGuard(url: URL?) throws -> Data {

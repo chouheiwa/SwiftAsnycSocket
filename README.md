@@ -15,7 +15,7 @@ Now **SwiftAsyncSocket** only support TCP/IP socket. I will continue to improve 
 
 ## Installation
 ### 1. Mannual install
-**SwiftAsyncSocket** will soon support **Cocoapods**
+**SwiftAsyncSocket** now supports **Cocoapods**
 
 So now you can only use this by those steps.
 

@@ -15,7 +15,17 @@ extension SwiftAsyncSocket {
         try acceptDoneGuard(method: "connect")
 
         if let interface = interface {
-            (connectInterface4, connectInterface6) = try acceptDoneInterfaceGuard(interface: interface, port: 0)
+            let result = try acceptDoneInterfaceGuard(interface: interface, port: 0)
+
+            switch result {
+            case .IPv4Data(let data):
+                connectInterface4 = data
+            case .IPv6Data(let data):
+                connectInterface6 = data
+            case .bothData(let ipv4, let ipv6):
+                connectInterface4 = ipv4
+                connectInterface6 = ipv6
+            }
         }
 
         readQueue.removeAll()

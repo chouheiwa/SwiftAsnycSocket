@@ -30,9 +30,17 @@ protocol SocketAddrProtocol {
     var host: String {get}
 
     var port: UInt16 {get}
+
+    var data: Data {get}
 }
 
 extension SocketAddrProtocol {
+
+    var data: Data {
+        var `self` = self
+
+        return Data(bytes: &self, count: MemoryLayout.size(ofValue: self))
+    }
 
     static func getPeerSocketFD(_ socketFD: Int32) -> Self? {
         var sock = Self()
