@@ -354,7 +354,7 @@ extension SwiftAsyncSocket {
         SwiftAsyncThread.default.setupQueue.sync {
             guard let thread = SwiftAsyncThread.default.thread else { return }
 
-            SwiftAsyncThread.default.perform(#selector(SwiftAsyncThread.default.unscheduleCFStreams),
+            SwiftAsyncThread.default.perform(#selector(SwiftAsyncThread.default.unscheduleCFStreams(asyncSocket:)),
                                              on: thread,
                                              with: self,
                                              waitUntilDone: true)

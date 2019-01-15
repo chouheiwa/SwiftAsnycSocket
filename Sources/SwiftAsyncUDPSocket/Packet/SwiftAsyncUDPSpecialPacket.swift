@@ -11,9 +11,7 @@ import Foundation
 class SwiftAsyncUDPSpecialPacket: SwiftAsyncUDPPacket {
     var resolveInProgress: Bool = false
 
-    var resolvedAddresses: [Any] = []
+    var resolvedAddresses: SocketDataType?
 
     var resolvedError: SwiftAsyncSocketError?
-
-
 }

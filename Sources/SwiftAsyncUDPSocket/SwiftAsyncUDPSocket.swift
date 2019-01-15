@@ -61,6 +61,12 @@ public class SwiftAsyncUDPSocket: NSObject {
 
     var pendingFilterOperations: UInt32 = 0
 
+    var cachedLocalAddress4: SwiftAsyncUDPSocketAddress?
+
+    var cachedLocalAddress6: SwiftAsyncUDPSocketAddress?
+
+    var cachedConnectedAddress: SwiftAsyncUDPSocketAddress?
+
     var queueKey: DispatchSpecificKey<SwiftAsyncUDPSocket> = DispatchSpecificKey<SwiftAsyncUDPSocket>()
 
     #if os(iOS)

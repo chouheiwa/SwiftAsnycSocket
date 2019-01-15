@@ -11,7 +11,7 @@ import Foundation
 protocol SwiftAsyncUDPPacket {
     var resolveInProgress: Bool {get set}
 
-    var resolvedAddresses: [Any] {get set}
+    var resolvedAddresses: SocketDataType? {get set}
 
     var resolvedError: SwiftAsyncSocketError? {get set}
 }

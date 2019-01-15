@@ -170,6 +170,41 @@ extension sockaddr_in6: SocketAddrProtocol {
         return string(inAddr: &(sock.sin6_addr), isIPv4: false) ?? ""
     }
 
+    var index: UInt32 {
+        var addrs: UnsafeMutablePointer<ifaddrs>?
+
+        guard getifaddrs(&addrs) == 0 else {
+            return 0
+        }
+
+        defer {
+            freeifaddrs(addrs)
+        }
+
+        var cursor = addrs
+
+        while cursor != nil {
+            guard let realCursor = cursor else {
+                fatalError("Logic error")
+            }
+
+            if realCursor.pointee.ifa_addr.pointee.sa_family == AF_INET6 {
+                let sock = realCursor.pointee.ifa_addr.withMemoryRebound(to: sockaddr_in6.self,
+                                                                         capacity: 1,
+                                                                         {$0})
+                var target = sock.pointee.sin6_addr
+                var compare = self.sin6_addr
+
+                if memcmp(&target, &compare, MemoryLayout<in6_addr>.size) == 0 {
+                    return if_nametoindex(realCursor.pointee.ifa_name)
+                }
+            }
+            cursor = realCursor.pointee.ifa_next
+        }
+
+        return 0
+    }
+
     /// Return a MutablePointer of sockaddr_in6
     /// Then can use pointee to change data
     /// Can not just return sockaddr_in6 is because that struct is only value copy.

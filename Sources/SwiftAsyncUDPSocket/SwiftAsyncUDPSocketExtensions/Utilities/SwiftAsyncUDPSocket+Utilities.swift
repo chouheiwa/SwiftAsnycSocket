@@ -81,9 +81,23 @@ extension SwiftAsyncUDPSocket {
             }
         }
     }
+    func setupSendAndReceiveSources(isSocket4: Bool) {
+        assert(DispatchQueue.getSpecific(key: queueKey) != nil, "Must be dispatched on socketQueue")
 
-    func convert(interface: String?,
-                 port: UInt16) {
-        
+        send4Source = DispatchSource.makeWriteSource(fileDescriptor: socket4FD, queue: socketQueue)
+        receive4Source = DispatchSource.makeReadSource(fileDescriptor: socket4FD, queue: socketQueue)
+
+        send4Source?.setEventHandler(handler: {
+            self.flags.insert(.sock4CanAcceptBytes)
+
+            guard let currentSend = self.currentSend as? SwiftAsyncUDPSendPacket,
+                (!currentSend.resolveInProgress && !currentSend.resolveInProgress)
+            else {
+                self.suspendSend4Source()
+                return
+            }
+
+            #warning ("Next Step Here")
+        })
     }
 }

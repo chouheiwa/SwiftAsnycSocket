@@ -19,13 +19,11 @@ class SwiftAsyncUDPSendPacket: SwiftAsyncUDPPacket {
 
     var filterInProgress: Bool = false
 
-    var resolvedAddresses: [Any] = []
+    var resolvedAddresses: SocketDataType?
 
     var resolvedError: SwiftAsyncSocketError?
 
-    var address: Data?
-
-    var addressFamily: Int32 = 0
+    var address: SwiftAsyncUDPSocketAddress?
 
     init(buffer: Data, timeout: TimeInterval, tag: Int) {
         self.buffer = buffer

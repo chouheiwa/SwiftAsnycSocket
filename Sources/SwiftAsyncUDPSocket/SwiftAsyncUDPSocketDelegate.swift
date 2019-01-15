@@ -9,14 +9,14 @@
 import Foundation
 
 public protocol SwiftAsyncUDPSocketDelegate: class {
-    func updSocket(_ socket: SwiftAsyncUDPSocket, didConnectTo address: Data)
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didConnectTo address: SwiftAsyncUDPSocketAddress)
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didNotConnect error: SwiftAsyncSocketError?)
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didSendDataWith tag: Int)
 
     func updSocket(_ socket: SwiftAsyncUDPSocket,
-                   didSendDataWith tag: Int,
+                   didNotSendDataWith tag: Int,
                    dueTo error: SwiftAsyncSocketError?)
 
     func updSocket(_ socket: SwiftAsyncUDPSocket,
