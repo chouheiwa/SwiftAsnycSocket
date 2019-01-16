@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum SocketDataType  {
+public enum SocketDataType {
     case IPv4Data(_ data: Data)
     case IPv6Data(_ data: Data)
     case bothData(IPv4: Data, IPv6: Data)
@@ -150,10 +150,10 @@ public enum SocketDataType  {
     }
 
     private static func getAddr(from cursor: ifaddrs,
-                         addr4: inout Data?,
-                         addr6: inout Data?,
-                         iface: UnsafePointer<Int8>?,
-                         port: UInt16) {
+                                addr4: inout Data?,
+                                addr6: inout Data?,
+                                iface: UnsafePointer<Int8>?,
+                                port: UInt16) {
         let saFamily = cursor.ifa_addr.pointee.sa_family
 
         if addr4 == nil && saFamily == AF_INET {

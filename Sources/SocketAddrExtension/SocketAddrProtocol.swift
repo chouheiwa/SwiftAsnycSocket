@@ -190,8 +190,7 @@ extension sockaddr_in6: SocketAddrProtocol {
 
             if realCursor.pointee.ifa_addr.pointee.sa_family == AF_INET6 {
                 let sock = realCursor.pointee.ifa_addr.withMemoryRebound(to: sockaddr_in6.self,
-                                                                         capacity: 1,
-                                                                         {$0})
+                                                                         capacity: 1, {$0})
                 var target = sock.pointee.sin6_addr
                 var compare = self.sin6_addr
 

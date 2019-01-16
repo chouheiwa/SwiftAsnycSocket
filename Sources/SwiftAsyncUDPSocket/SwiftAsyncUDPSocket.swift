@@ -118,7 +118,6 @@ public class SwiftAsyncUDPSocket: NSObject {
         NotificationCenter.default.removeObserver(self)
         #endif
         #warning ("Next Step Here")
-        
     }
 
     @objc func applicationWillEnterForeGround() {

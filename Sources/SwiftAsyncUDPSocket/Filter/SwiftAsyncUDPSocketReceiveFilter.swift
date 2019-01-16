@@ -9,7 +9,11 @@
 import Foundation
 
 public struct SwiftAsyncUDPSocketReceiveFilter: SwiftAsyncUDPSocketFilter {
-    public typealias BlockType = (Data, Data, Any?) -> Bool
+
+    /// The data and address
+    /// Need to return allowed and a context
+    /// you can receive the context in delegate method
+    public typealias BlockType = (Data, SwiftAsyncUDPSocketAddress) -> (Bool, Any?)
 
     public var filterBlock: BlockType
 

@@ -9,12 +9,16 @@
 import Foundation
 
 public struct SwiftAsyncUDPSocketAddress {
-    public enum `Type` {
+    public enum Types {
         case socket4
         case socket6
+
+        init(isSock4: Bool) {
+            self = isSock4 ? .socket4 : .socket6
+        }
     }
 
-    public let type: Type
+    public let type: Types
 
     public let address: Data
 
@@ -22,7 +26,7 @@ public struct SwiftAsyncUDPSocketAddress {
 
     public let port: UInt16
 
-    init?(type: Type, socketFD: Int32) {
+    init?(type: Types, socketFD: Int32) {
         self.type = type
         var sock: SocketAddrProtocol
 
@@ -46,7 +50,7 @@ public struct SwiftAsyncUDPSocketAddress {
         self.port = sock.port
     }
 
-    init(type: Type, address: Data) {
+    init(type: Types, address: Data) {
         self.type = type
         self.address = address
 
@@ -63,5 +67,32 @@ public struct SwiftAsyncUDPSocketAddress {
 
         self.host = sock.host
         self.port = sock.port
+    }
+
+    static func == (left: SwiftAsyncUDPSocketAddress, right: SwiftAsyncUDPSocketAddress?) -> Bool {
+        guard let right = right else { return false }
+
+        guard left.type == right.type &&
+            left.address.count == right.address.count else {
+            return false
+        }
+
+        var leftAddr: SocketAddrProtocol
+        var rightAddr: SocketAddrProtocol
+
+        switch left.type {
+        case .socket4:
+            let sockL: sockaddr_in = left.address.convert().pointee
+            let sockR: sockaddr_in = right.address.convert().pointee
+            leftAddr = sockL
+            rightAddr = sockR
+        case .socket6:
+            let sockL: sockaddr_in6 = left.address.convert().pointee
+            let sockR: sockaddr_in6 = right.address.convert().pointee
+            leftAddr = sockL
+            rightAddr = sockR
+        }
+
+        return leftAddr.host == rightAddr.host && leftAddr.port == rightAddr.port
     }
 }

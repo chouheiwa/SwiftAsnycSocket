@@ -24,7 +24,9 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
-    func asyncResolved(host: String, port: UInt16,completionBlock: @escaping (SocketDataType?, SwiftAsyncSocketError?) -> Void ) {
+    func asyncResolved(host: String,
+                       port: UInt16,
+                       completionBlock: @escaping (SocketDataType?, SwiftAsyncSocketError?) -> Void ) {
         DispatchQueue.global().async {
             do {
                 let result = try SocketDataType.lookup(host: host, port: port, isTCP: false)
@@ -51,7 +53,8 @@ extension SwiftAsyncUDPSocket {
                 throw SwiftAsyncSocketError(msg: "IPv4 has been disabled and DNS lookup found no IPv6 address(es).")
             }
             guard !isIPv4Deactivated else {
-                throw SwiftAsyncSocketError(msg: "IPv4 has been deactivated due to bind/connect, and DNS lookup found no IPv6 address(es).")
+                throw SwiftAsyncSocketError(msg:
+                    "IPv4 has been deactivated due to bind/connect, and DNS lookup found no IPv6 address(es).")
             }
         }
 
@@ -60,7 +63,8 @@ extension SwiftAsyncUDPSocket {
                 throw SwiftAsyncSocketError(msg: "IPv6 has been disabled and DNS lookup found no IPv4 address(es).")
             }
             guard !isIPv6Deactivated else {
-                throw SwiftAsyncSocketError(msg: "IPv6 has been deactivated due to bind/connect, and DNS lookup found no IPv4 address(es).")
+                throw SwiftAsyncSocketError(msg:
+                    "IPv6 has been deactivated due to bind/connect, and DNS lookup found no IPv4 address(es).")
             }
         }
 
@@ -83,11 +87,10 @@ extension SwiftAsyncUDPSocket {
     }
     func setupSendAndReceiveSources(isSocket4: Bool) {
         assert(DispatchQueue.getSpecific(key: queueKey) != nil, "Must be dispatched on socketQueue")
+        let send4Source = DispatchSource.makeWriteSource(fileDescriptor: socket4FD, queue: socketQueue)
+        let receive4Source = DispatchSource.makeReadSource(fileDescriptor: socket4FD, queue: socketQueue)
 
-        send4Source = DispatchSource.makeWriteSource(fileDescriptor: socket4FD, queue: socketQueue)
-        receive4Source = DispatchSource.makeReadSource(fileDescriptor: socket4FD, queue: socketQueue)
-
-        send4Source?.setEventHandler(handler: {
+        send4Source.setEventHandler(handler: {
             self.flags.insert(.sock4CanAcceptBytes)
 
             guard let currentSend = self.currentSend as? SwiftAsyncUDPSendPacket,
@@ -97,7 +100,15 @@ extension SwiftAsyncUDPSocket {
                 return
             }
 
-            #warning ("Next Step Here")
+            self.doSend()
+        })
+
+        receive4Source.setEventHandler(handler: {
+            self.socket4FDBytesAvailable = receive4Source.data
+
+            if self.socket4FDBytesAvailable > 0 {
+                #warning ("Next Step Here")
+            }
         })
     }
 }

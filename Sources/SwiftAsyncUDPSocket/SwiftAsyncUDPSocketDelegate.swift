@@ -20,7 +20,8 @@ public protocol SwiftAsyncUDPSocketDelegate: class {
                    dueTo error: SwiftAsyncSocketError?)
 
     func updSocket(_ socket: SwiftAsyncUDPSocket,
-                   fromAddress: Data,
+                   didReceive data: Data,
+                   from address: SwiftAsyncUDPSocketAddress,
                    withFilterContext filterContext: Any?)
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didCloseWith error: SwiftAsyncSocketError?)
@@ -38,7 +39,8 @@ public extension SwiftAsyncSocketDelegate {
                    dueTo error: SwiftAsyncSocketError?) {}
 
     func updSocket(_ socket: SwiftAsyncUDPSocket,
-                   fromAddress: Data,
+                   didReceive data: Data,
+                   from address: SwiftAsyncUDPSocketAddress,
                    withFilterContext filterContext: Any?) {}
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didCloseWith error: SwiftAsyncSocketError?) {}

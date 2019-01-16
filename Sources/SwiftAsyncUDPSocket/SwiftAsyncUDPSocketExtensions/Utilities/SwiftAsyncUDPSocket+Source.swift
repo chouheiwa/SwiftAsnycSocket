@@ -39,9 +39,8 @@ extension SwiftAsyncUDPSocket {
         resumeSource(flag: .receive6SourceSuspended, source: receive6Source)
     }
 
-
     private func suspendSource(flag: SwiftAsyncUdpSocketFlags, source: DispatchSourceProtocol?) {
-        guard let source = source,(!flags.contains(flag)) else { return }
+        guard let source = source, (!flags.contains(flag)) else { return }
 
         source.suspend()
 
@@ -49,11 +48,10 @@ extension SwiftAsyncUDPSocket {
     }
 
     private func resumeSource(flag: SwiftAsyncUdpSocketFlags, source: DispatchSourceProtocol?) {
-        guard let source = source,(flags.contains(flag)) else { return }
+        guard let source = source, (flags.contains(flag)) else { return }
 
         source.resume()
 
         flags.remove(flag)
     }
 }
-

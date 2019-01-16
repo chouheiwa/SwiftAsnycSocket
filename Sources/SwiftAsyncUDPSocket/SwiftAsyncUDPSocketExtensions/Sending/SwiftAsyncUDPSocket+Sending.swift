@@ -64,64 +64,10 @@ extension SwiftAsyncUDPSocket {
             assert(false, "Current send can not be nil or other class at here")
             return
         }
-
-        let errorDone: (SwiftAsyncSocketError) -> Void = { (error) in
-            self.delegateQueue?.async {
-                self.delegate?.updSocket(self, didNotSendDataWith: currentSend.tag, dueTo: error)
-            }
-
-            self.endCurrentSend()
-            self.maybeDequeueSend()
-        }
-
         //
         // 1. Check for problems with send packet
         //
-        if flags.contains(.didConnect) {
-            guard currentSend.resolvedError == nil &&
-                currentSend.resolvedAddresses == nil &&
-                !currentSend.resolveInProgress else {
-                    errorDone(SwiftAsyncSocketError.badConfig(msg:
-                        "Cannot specify destination of packet for connected socket"))
-                    return
-            }
-
-            currentSend.address = cachedConnectedAddress
-        } else {
-            guard !currentSend.resolveInProgress else {
-                if flags.contains(.sock4CanAcceptBytes) {
-                    suspendSend4Source()
-                }
-
-                if flags.contains(.sock6CanAcceptBytes) {
-                    suspendSend6Source()
-                }
-                return
-            }
-
-            if let error = currentSend.resolvedError {
-                errorDone(error)
-                return
-            }
-
-            if currentSend.address == nil {
-                guard let resolvedAddresses = currentSend.resolvedAddresses else {
-                    errorDone(SwiftAsyncSocketError.badConfig(msg:
-                        "You must specify destination of packet for a non-connected socket"))
-                    return
-                }
-
-                do {
-                    currentSend.address = try get(from: resolvedAddresses)
-                } catch let error as SwiftAsyncSocketError {
-                    errorDone(error)
-                    return
-                } catch {
-                    fatalError("\(error)")
-                }
-            }
-        }
-
+        guard doPreSendCheckProblem(currentSend: currentSend) else {return}
         //
         // 2. Query send filter (if applicable)
         //
@@ -129,8 +75,7 @@ extension SwiftAsyncUDPSocket {
             //
             // 3. No sendFilter. Just sending
             //
-            doPreSend()
-
+            doSend()
             return
         }
         // query sendFilter
@@ -175,9 +120,63 @@ extension SwiftAsyncUDPSocket {
 
             filterDone(allowed)
         }
-        //
-        //
-        //
+    }
+
+    private func doPreSendCheckProblem(currentSend: SwiftAsyncUDPSendPacket) -> Bool {
+        let errorDone: (SwiftAsyncSocketError) -> Void = { (error) in
+            self.delegateQueue?.async {
+                self.delegate?.updSocket(self, didNotSendDataWith: currentSend.tag, dueTo: error)
+            }
+
+            self.endCurrentSend()
+            self.maybeDequeueSend()
+        }
+
+        if flags.contains(.didConnect) {
+            guard currentSend.resolvedError == nil &&
+                currentSend.resolvedAddresses == nil &&
+                !currentSend.resolveInProgress else {
+                    errorDone(SwiftAsyncSocketError.badConfig(msg:
+                        "Cannot specify destination of packet for connected socket"))
+                    return false
+            }
+
+            currentSend.address = cachedConnectedAddress
+        } else {
+            guard !currentSend.resolveInProgress else {
+                if flags.contains(.sock4CanAcceptBytes) {
+                    suspendSend4Source()
+                }
+
+                if flags.contains(.sock6CanAcceptBytes) {
+                    suspendSend6Source()
+                }
+                return false
+            }
+
+            if let error = currentSend.resolvedError {
+                errorDone(error)
+                return false
+            }
+
+            if currentSend.address == nil {
+                guard let resolvedAddresses = currentSend.resolvedAddresses else {
+                    errorDone(SwiftAsyncSocketError.badConfig(msg:
+                        "You must specify destination of packet for a non-connected socket"))
+                    return false
+                }
+
+                do {
+                    currentSend.address = try get(from: resolvedAddresses)
+                } catch let error as SwiftAsyncSocketError {
+                    errorDone(error)
+                    return false
+                } catch {
+                    fatalError("\(error)")
+                }
+            }
+        }
+        return true
     }
 
     func doSend() {
@@ -193,14 +192,7 @@ extension SwiftAsyncUDPSocket {
 
         var result = 0
 
-        var socketFD: Int32
-
-        switch address.type {
-        case .socket4:
-            socketFD = socket4FD
-        case .socket6:
-            socketFD = socket6FD
-        }
+        let socketFD: Int32 = address.type == .socket4 ? socket4FD : socket6FD
 
         if flags.contains(.didConnect) {
             // Connected socket
@@ -294,10 +286,7 @@ extension SwiftAsyncUDPSocket {
                                               reason: "Error enabling non-blocking IO on socket (fcntl)")
         }
         var resueaddr = 1
-        var result: Int32 = Darwin.setsockopt(socketFD,
-                                              SOL_SOCKET,
-                                              SO_REUSEADDR,
-                                              &resueaddr,
+        var result: Int32 = Darwin.setsockopt(socketFD, SOL_SOCKET, SO_REUSEADDR, &resueaddr,
                                               socklen_t(MemoryLayout.size(ofValue: resueaddr)))
 
         guard result != -1 else {
@@ -307,10 +296,7 @@ extension SwiftAsyncUDPSocket {
         }
 
         var nosigpipe = 1
-        result = Darwin.setsockopt(socketFD,
-                                   SOL_SOCKET,
-                                   SO_NOSIGPIPE,
-                                   &nosigpipe,
+        result = Darwin.setsockopt(socketFD, SOL_SOCKET, SO_NOSIGPIPE, &nosigpipe,
                                    socklen_t(MemoryLayout.size(ofValue: nosigpipe)))
 
         guard result != -1 else {
@@ -321,9 +307,7 @@ extension SwiftAsyncUDPSocket {
 
         var maxSendSize = self.maxSendSizeStore
 
-        result = Darwin.setsockopt(socketFD,
-                                   SOL_SOCKET,
-                                   SO_SNDBUF,
+        result = Darwin.setsockopt(socketFD, SOL_SOCKET, SO_SNDBUF,
                                    &maxSendSize,
                                    socklen_t(MemoryLayout<Int32>.size))
 
@@ -333,9 +317,7 @@ extension SwiftAsyncUDPSocket {
                                               reason: "Error setting send buffer size (setsockopt)")
         }
 
-        result = Darwin.setsockopt(socketFD,
-                                   SOL_SOCKET,
-                                   SO_RCVBUF,
+        result = Darwin.setsockopt(socketFD, SOL_SOCKET, SO_RCVBUF,
                                    &maxSendSize,
                                    socklen_t(MemoryLayout<Int32>.size))
 
