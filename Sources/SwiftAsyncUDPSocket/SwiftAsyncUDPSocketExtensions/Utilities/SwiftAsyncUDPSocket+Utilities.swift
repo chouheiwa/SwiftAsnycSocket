@@ -85,30 +85,64 @@ extension SwiftAsyncUDPSocket {
             }
         }
     }
+
     func setupSendAndReceiveSources(isSocket4: Bool) {
         assert(DispatchQueue.getSpecific(key: queueKey) != nil, "Must be dispatched on socketQueue")
-        let send4Source = DispatchSource.makeWriteSource(fileDescriptor: socket4FD, queue: socketQueue)
-        let receive4Source = DispatchSource.makeReadSource(fileDescriptor: socket4FD, queue: socketQueue)
+        let sockFD = isSocket4 ? socket4FD : socket6FD
+        let sendSource = DispatchSource.makeWriteSource(fileDescriptor: sockFD, queue: socketQueue)
+        let receiveSource = DispatchSource.makeReadSource(fileDescriptor: sockFD, queue: socketQueue)
 
-        send4Source.setEventHandler(handler: {
-            self.flags.insert(.sock4CanAcceptBytes)
+        sendSource.setEventHandler(handler: {
+            self.flags.insert(isSocket4 ? .sock4CanAcceptBytes : .sock6CanAcceptBytes)
 
             guard let currentSend = self.currentSend as? SwiftAsyncUDPSendPacket,
                 (!currentSend.resolveInProgress && !currentSend.resolveInProgress)
             else {
-                self.suspendSend4Source()
+                if isSocket4 {
+                    self.suspendSend4Source()
+                } else {self.suspendSend6Source()}
+
                 return
             }
 
             self.doSend()
         })
 
-        receive4Source.setEventHandler(handler: {
-            self.socket4FDBytesAvailable = receive4Source.data
-
-            if self.socket4FDBytesAvailable > 0 {
-                #warning ("Next Step Here")
+        receiveSource.setEventHandler(handler: {
+            if isSocket4 {
+                self.socket4FDBytesAvailable = receiveSource.data
+            } else {
+                self.socket6FDBytesAvailable = receiveSource.data
             }
+
+            if receiveSource.data > 0 {
+                self.doReceive()
+            } else {self.doReceiveEOF()}
         })
+
+        var socketFDRefCount = 2
+
+        let cancleHandler = {
+            socketFDRefCount -= 1
+            if socketFDRefCount <= 0 {
+                Darwin.close(sockFD)
+            }
+        }
+
+        sendSource.setCancelHandler(handler: cancleHandler)
+
+        receiveSource.setCancelHandler(handler: cancleHandler)
+
+        if isSocket4 {
+            send4Source = sendSource
+            receive4Source = receiveSource
+            socket4FDBytesAvailable = 0
+            flags.insert([.sock4CanAcceptBytes, .send4SourceSuspended, .receive4SourceSuspended])
+        } else {
+            send6Source = sendSource
+            receive6Source = receiveSource
+            socket6FDBytesAvailable = 0
+            flags.insert([.sock6CanAcceptBytes, .send6SourceSuspended, .receive6SourceSuspended])
+        }
     }
 }

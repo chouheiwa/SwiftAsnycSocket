@@ -212,3 +212,71 @@ extension SwiftAsyncUDPSocket {
         }
     }
 }
+
+extension SwiftAsyncUDPSocket {
+    public var cachedLocalAddress4: SwiftAsyncUDPSocketAddress? {
+        get {
+            var result: SwiftAsyncUDPSocketAddress?
+
+            socketQueueDo {
+                result = self.cachedLocalAddress4Store
+            }
+            return result
+        }
+        set {
+            socketQueueDo(async: false, {
+                self.cachedLocalAddress4Store = newValue
+            })
+        }
+    }
+
+    public var cachedLocalAddress6: SwiftAsyncUDPSocketAddress? {
+        get {
+            var result: SwiftAsyncUDPSocketAddress?
+
+            socketQueueDo {
+                result = self.cachedLocalAddress6Store
+            }
+            return result
+        }
+        set {
+            socketQueueDo(async: false, {
+                self.cachedLocalAddress6Store = newValue
+            })
+        }
+    }
+
+    public var cachedConnectedAddress: SwiftAsyncUDPSocketAddress? {
+        get {
+            var result: SwiftAsyncUDPSocketAddress?
+
+            socketQueueDo {
+                result = self.cachedConnectedAddressStore
+            }
+            return result
+        }
+        set {
+            socketQueueDo(async: false, {
+                self.cachedConnectedAddressStore = newValue
+            })
+        }
+    }
+
+    public var isConnected: Bool {
+        var result = false
+
+        socketQueueDo {
+            result = self.flags.contains(.didConnect)
+        }
+        return result
+    }
+
+    public var isClosed: Bool {
+        var result = false
+
+        socketQueueDo {
+            result = !self.flags.contains(.didCreatSockets)
+        }
+        return result
+    }
+}

@@ -25,7 +25,61 @@ public enum SocketDataType {
         }
     }
 
-    public static func lookup(host: String, port: UInt16, isTCP: Bool = true) throws -> SocketDataType {
+    mutating func change(IPv4Enable: Bool, IPv6Enable: Bool) throws {
+        guard IPv4Enable || IPv6Enable else {
+            throw SwiftAsyncSocketError.badParamError(
+                "Both IPv4 and IPv4 are disable")
+        }
+        // If both IPv6Enable enable and IPv4Enable then we don't need to do anything
+        guard !(IPv6Enable && IPv4Enable) else {
+            return
+        }
+
+        switch self {
+        case .bothData(let IPv4Data, let IPv6Data):
+            guard IPv4Enable else {
+                self = .IPv6Data(IPv6Data)
+                return
+            }
+
+            self = .IPv4Data(IPv4Data)
+        case .IPv4Data:
+            guard IPv4Enable else {
+                throw SwiftAsyncSocketError.badParamError(
+                    "IPv4 has been disabled and specified interface doesn't support IPv6.")
+            }
+        case .IPv6Data:
+            guard IPv6Enable else {
+                throw SwiftAsyncSocketError.badParamError(
+                    "IPv6 has been disabled and specified interface doesn't support IPv4.")
+            }
+        }
+    }
+}
+
+public extension SocketDataType {
+    public init(data: Data) throws {
+        var address4: Data?
+        var address6: Data?
+
+        if data.count >= MemoryLayout<sockaddr>.size {
+            let sockaddrs: UnsafePointer<sockaddr> = data.convert()
+
+            if sockaddrs.pointee.sa_family == AF_INET &&
+                data.count == MemoryLayout<sockaddr_in>.size {
+                address4 = data
+            } else if sockaddrs.pointee.sa_family == AF_INET6 &&
+                data.count == MemoryLayout<sockaddr_in6>.size {
+                address6 = data
+            }
+        }
+
+        try self.init(IPv4: address4, IPv6: address6)
+    }
+
+    public static func lookup(host: String, port: UInt16,
+                              hasNumeric: Bool = false,
+                              isTCP: Bool = true) throws -> SocketDataType {
         guard host != "localhost" && host != "loopback" else {
             let (nativeAddr4, nativeAddr6) = sockaddr.getSockData(fromLocalHost: port)
 
@@ -37,6 +91,10 @@ public enum SocketDataType {
         hints.ai_family = PF_UNSPEC
         hints.ai_socktype = isTCP ? SOCK_STREAM : SOCK_DGRAM
         hints.ai_protocol = isTCP ? IPPROTO_TCP : IPPROTO_UDP
+
+        if hasNumeric {
+            hints.ai_flags = AI_NUMERICHOST
+        }
 
         var res: UnsafeMutablePointer<addrinfo>?
 

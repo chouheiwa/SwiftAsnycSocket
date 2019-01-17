@@ -69,6 +69,22 @@ public struct SwiftAsyncUDPSocketAddress {
         self.port = sock.port
     }
 
+    init(socket4: sockaddr_in) {
+        self.type = .socket4
+        self.address = socket4.data
+
+        self.host = socket4.host
+        self.port = socket4.port
+    }
+
+    init(socket6: sockaddr_in6) {
+        self.type = .socket6
+        self.address = socket6.data
+
+        self.host = socket6.host
+        self.port = socket6.port
+    }
+
     static func == (left: SwiftAsyncUDPSocketAddress, right: SwiftAsyncUDPSocketAddress?) -> Bool {
         guard let right = right else { return false }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Connect
 extension SwiftAsyncSocket {
     /// Connects to the given host & port, via the optional interface, with an optional timeout.
     ///
@@ -160,22 +161,7 @@ extension SwiftAsyncSocket {
     private func connectToAddress(_ toAddress: Data,
                                   viaInterface interface: String?,
                                   timeout: TimeInterval) throws {
-        var address4: Data?
-        var address6: Data?
-
-        if toAddress.count >= MemoryLayout<sockaddr>.size {
-            let sockaddrs: UnsafePointer<sockaddr> = toAddress.convert()
-
-            if sockaddrs.pointee.sa_family == AF_INET &&
-                toAddress.count == MemoryLayout<sockaddr_in>.size {
-                address4 = toAddress
-            } else if sockaddrs.pointee.sa_family == AF_INET6 &&
-                toAddress.count == MemoryLayout<sockaddr_in6>.size {
-                address6 = toAddress
-            }
-        }
-
-        let dataType = try SocketDataType(IPv4: address4, IPv6: address6)
+        let dataType = try SocketDataType(data: toAddress)
 
         switch dataType {
         case .IPv4Data:

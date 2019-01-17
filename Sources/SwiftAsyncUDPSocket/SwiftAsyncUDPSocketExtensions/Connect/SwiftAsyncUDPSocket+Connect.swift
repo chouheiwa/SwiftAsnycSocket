@@ -9,6 +9,88 @@
 import Foundation
 
 extension SwiftAsyncUDPSocket {
+
+    func preConnect() throws {
+        try preOpen()
+
+        guard flags.contains(.connecting) || flags.contains(.didConnect) else {
+            throw SwiftAsyncSocketError.badConfig(msg:
+                "Cannot connect a socket more than once.")
+        }
+
+        guard isIPv6Enable || isIPv4Enable else {
+            throw SwiftAsyncSocketError.badConfig(msg:
+                "Both IPv4 and IPv6 have been disabled. " +
+                "Must enable at least one protocol first.")
+        }
+    }
+
+    public func connect(to host: String, port: UInt16) throws {
+        var err: SwiftAsyncSocketError?
+
+        socketQueueDo {
+            do {
+                try self.connectPreJob(prepareBlock: { (packet) in
+                    packet.resolveInProgress = true
+
+                    self.asyncResolved(host: host, port: port, completionBlock: {
+                        packet.resolveInProgress = false
+                        packet.resolvedAddresses = $0
+                        packet.resolvedError = $1
+
+                        self.maybeConnect()
+                    })
+                })
+            } catch let error as SwiftAsyncSocketError {
+                err = error
+            } catch {
+                fatalError("\(error)")
+            }
+        }
+
+        if let error = err {
+            throw error
+        }
+    }
+
+    public func connect(to address: Data) throws {
+        var err: SwiftAsyncSocketError?
+
+        socketQueueDo {
+            do {
+                try self.connectPreJob(prepareBlock: { (packet) in
+                    packet.resolvedAddresses = try? SocketDataType(data: address)
+                })
+            } catch let error as SwiftAsyncSocketError {
+                err = error
+            } catch {
+                fatalError("\(error)")
+            }
+        }
+
+        if let error = err {
+            throw error
+        }
+    }
+
+    func connectPreJob(prepareBlock: (SwiftAsyncUDPSpecialPacket) -> Void) throws {
+        try self.preConnect()
+
+        if !self.flags.contains(.didCreatSockets) {
+            try self.createSocket(IPv4: self.isIPv4Enable, IPv6: self.isIPv6Enable)
+        }
+
+        let packet = SwiftAsyncUDPSpecialPacket()
+
+        prepareBlock(packet)
+
+        self.flags.insert(.connecting)
+
+        self.sendQueue.append(packet)
+
+        self.maybeDequeueSend()
+    }
+
     func maybeConnect() {
         assert(DispatchQueue.getSpecific(key: queueKey) != nil, "Must be dispatched on socketQueue")
 
@@ -56,7 +138,7 @@ extension SwiftAsyncUDPSocket {
 
     }
 
-    func connect(address: SwiftAsyncUDPSocketAddress) throws {
+    private func connect(address: SwiftAsyncUDPSocketAddress) throws {
         assert(DispatchQueue.getSpecific(key: queueKey) != nil, "Must be dispatched on socketQueue")
 
         var function = self.closeSocket6

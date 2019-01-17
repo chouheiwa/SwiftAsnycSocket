@@ -251,20 +251,27 @@ extension SwiftAsyncUDPSocket {
         assert(!flags.contains(.didCreatSockets), "Sockets have already been created")
 
         if IPv4 {
-            socket4FD = try createSocket(domain: AF_INET)
+            try createSocket4()
         }
 
         if IPv6 {
-            socket6FD = try createSocket(domain: AF_INET6)
+            try createSocket6()
         }
 
-        if IPv4 {
-            setupSendAndReceiveSources(isSocket4: true)
-        }
+    }
 
-        if IPv6 {
-            setupSendAndReceiveSources(isSocket4: false)
-        }
+    func createSocket4() throws {
+        socket4FD = try createSocket(domain: AF_INET)
+
+        setupSendAndReceiveSources(isSocket4: true)
+
+        flags.insert(.didCreatSockets)
+    }
+
+    func createSocket6() throws {
+        socket4FD = try createSocket(domain: AF_INET6)
+
+        setupSendAndReceiveSources(isSocket4: false)
 
         flags.insert(.didCreatSockets)
     }

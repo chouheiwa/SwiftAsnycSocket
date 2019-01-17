@@ -30,6 +30,10 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
+    func doReceiveEOF() {
+        close(error: SwiftAsyncSocketError.connectionClosedError)
+    }
+
     private func doReceiveFindKind() -> Bool? {
         let suspendBlock = {
             if self.socket4FDBytesAvailable > 0 {

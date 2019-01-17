@@ -61,11 +61,11 @@ public class SwiftAsyncUDPSocket: NSObject {
 
     var pendingFilterOperations: UInt32 = 0
 
-    var cachedLocalAddress4: SwiftAsyncUDPSocketAddress?
+    var cachedLocalAddress4Store: SwiftAsyncUDPSocketAddress?
 
-    var cachedLocalAddress6: SwiftAsyncUDPSocketAddress?
+    var cachedLocalAddress6Store: SwiftAsyncUDPSocketAddress?
 
-    var cachedConnectedAddress: SwiftAsyncUDPSocketAddress?
+    var cachedConnectedAddressStore: SwiftAsyncUDPSocketAddress?
 
     var queueKey: DispatchSpecificKey<SwiftAsyncUDPSocket> = DispatchSpecificKey<SwiftAsyncUDPSocket>()
 
@@ -117,7 +117,12 @@ public class SwiftAsyncUDPSocket: NSObject {
         #if os(iOS)
         NotificationCenter.default.removeObserver(self)
         #endif
-        #warning ("Next Step Here")
+        socketQueueDo {
+            self.close(error: nil)
+        }
+
+        delegate = nil
+        delegateQueue = nil
     }
 
     @objc func applicationWillEnterForeGround() {
