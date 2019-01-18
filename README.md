@@ -7,7 +7,7 @@ I translated it from [CocoaAsyncSocket](https://github.com/robbiehanson/CocoaAsy
 
 In other words, if you have experience to use **CocoaAsyncSocket**, you will feel familar to this.
 
-Now **SwiftAsyncSocket** only support TCP/IP socket. I will continue to improve the functionality to support UDP.
+**SwiftAsyncSocket** can support both TCP/IP and UDP/IP socket.
 
 **SwiftAsyncSocket** is heavier then **CocoaAsyncSocket**. Because there is more then 8,000 line in one file of **CocoaAsyncSocket**. I scattered these logic across multiple files.
 
@@ -15,7 +15,7 @@ Now **SwiftAsyncSocket** only support TCP/IP socket. I will continue to improve 
 
 ## Installation
 ### 1. Mannual install
-**SwiftAsyncSocket** now supports **Cocoapods**
+**SwiftAsyncSocket** now support **Cocoapods**
 
 So now you can only use this by those steps.
 
@@ -159,5 +159,83 @@ class Server: SwiftAsyncSocketDelegate {
 ```
 
 #### UDP
+##### 1. Use as client. 
+```Swift
+import Foundation
+import SwiftAsyncSocket
 
-Coming soon
+class UdpClient {
+    var socket: SwiftAsyncUDPSocket
+    
+    init() {
+        // you can not set delegate here because in this line that init function has not complete.So set delegate next line
+        serverSocket = SwiftAsyncUDPSocket(delegate: nil, delegateQueue: DispatchQueue.main)
+        // All the delagate function is optional. If you want to use. You can implement it.
+        socket.delgate = self
+        
+        do {
+            // Connected 
+            try socket.connect(toHost: "localhost", onPort: 8090)
+        } catch {
+            // Here to print error
+            print("\(error)")
+        }
+    }
+    
+    func sendData() {
+        let data = "data".data(using: .utf8) ?? Data()
+        
+        do {
+            socket.send(data: data, timeout: -1, tag: 10)
+            // Use next line if you want to receive data
+            try socket.receiveAlways()
+        } catch {
+            print("\(error)")
+        }
+    }
+}
+/// You don't need implement any method to send data
+extension Client: SwiftAsyncUDPSocketDelgate {
+    func updSocket(_ socket: SwiftAsyncUDPSocket,
+                   didReceive data: Data,
+                   from address: SwiftAsyncUDPSocketAddress,
+                   withFilterContext filterContext: Any?) {
+                   
+    }
+}
+```
+
+##### 2. Use as server.
+
+```Swift
+import Foundation
+import SwiftAsyncSocket
+
+class UdpServer {
+    let port: UInt16
+    let serverSocket: SwiftAsyncUDPSocket
+
+    var didReceiveData: ((Data) -> Void)?
+
+    init(port: UInt16) throws {
+        self.port = port
+        serverSocket = SwiftAsyncUDPSocket(delegate: nil, delegateQueue: DispatchQueue.main)
+
+        serverSocket.delegate = self
+
+        try serverSocket.bind(port: port)
+
+        try serverSocket.receiveAlways()
+    }
+}
+extension UdpServer: SwiftAsyncUDPSocketDelegate {
+    func updSocket(_ socket: SwiftAsyncUDPSocket,
+                   didReceive data: Data,
+                   from address: SwiftAsyncUDPSocketAddress,
+                   withFilterContext filterContext: Any?) {
+                   
+        let string = String(data: data, encoding: .utf8) ?? ""
+        print("Receive Data: \(string)")
+    }
+}
+```

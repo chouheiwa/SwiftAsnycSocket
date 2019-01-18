@@ -44,7 +44,6 @@ class SwiftAsyncUDPSocketTest: XCTestCase {
 
         server.didReceiveData = {
             XCTAssert($0 == data, "Data was not equal")
-
             testException.fulfill()
         }
 
