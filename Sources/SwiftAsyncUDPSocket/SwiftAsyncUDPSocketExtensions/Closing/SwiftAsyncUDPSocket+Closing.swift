@@ -18,11 +18,6 @@ extension SwiftAsyncUDPSocket {
 
         sendQueue.removeAll()
 
-        #if os(iOS)
-        removeStreamsFromRunloop()
-        closeReadAndWriteStreams()
-        #endif
-
         closeSockets()
 
         flags = []

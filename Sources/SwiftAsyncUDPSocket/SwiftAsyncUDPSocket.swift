@@ -9,12 +9,7 @@
 import Foundation
 #if os(iOS)
 import UIKit
-import CFNetwork
 #endif
-
-extension SwiftAsyncSocketKeys {
-    static let udpSocketQueueName = "SwiftAsyncUdpSocket"
-}
 
 public class SwiftAsyncUDPSocket: NSObject {
     weak var delegateStore: SwiftAsyncUDPSocketDelegate?
@@ -68,18 +63,6 @@ public class SwiftAsyncUDPSocket: NSObject {
     var cachedConnectedAddressStore: SwiftAsyncUDPSocketAddress?
 
     var queueKey: DispatchSpecificKey<SwiftAsyncUDPSocket> = DispatchSpecificKey<SwiftAsyncUDPSocket>()
-
-    #if os(iOS)
-    var streamContext: CFStreamClientContext = CFStreamClientContext()
-
-    var readStream4: CFReadStream?
-
-    var readStream6: CFReadStream?
-
-    var writeStream4: CFWriteStream?
-
-    var writeStream6: CFWriteStream?
-    #endif
 
     var userDataStore: Any?
 
@@ -139,6 +122,28 @@ public class SwiftAsyncUDPSocket: NSObject {
             if async {
                 socketQueue.async(execute: doBlock)
             } else { socketQueue.sync(execute: doBlock) }
+        }
+    }
+
+    public func socketQueueDoWithError(_ errorBlock: () throws -> Void) throws {
+        if DispatchQueue.getSpecific(key: queueKey) != nil {
+           try errorBlock()
+        } else {
+            var err: SwiftAsyncSocketError?
+
+            socketQueue.sync(execute: {
+                do {
+                    try errorBlock()
+                } catch let error as SwiftAsyncSocketError {
+                    err = error
+                } catch {
+                    fatalError("\(error)")
+                }
+            })
+
+            if let error = err {
+                throw error
+            }
         }
     }
 }

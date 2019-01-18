@@ -120,24 +120,5 @@ final class SwiftAsyncThread: NSObject {
             CFWriteStreamUnscheduleFromRunLoop(writeStream, runloop, CFRunLoopMode.defaultMode)
         }
     }
-
-    @objc func unscheduleCFStreams(asyncUDPSocket: SwiftAsyncUDPSocket?) {
-        assert(Thread.current == thread, "Invoked on wrong thread")
-
-        let runLoop = CFRunLoopGetCurrent()
-
-        if let readStream4 = asyncUDPSocket?.readStream4 {
-            CFReadStreamUnscheduleFromRunLoop(readStream4, runLoop, CFRunLoopMode.defaultMode)
-        }
-        if let readStream6 = asyncUDPSocket?.readStream6 {
-            CFReadStreamUnscheduleFromRunLoop(readStream6, runLoop, CFRunLoopMode.defaultMode)
-        }
-        if let writeStream4 = asyncUDPSocket?.writeStream4 {
-            CFWriteStreamUnscheduleFromRunLoop(writeStream4, runLoop, CFRunLoopMode.defaultMode)
-        }
-        if let writeStream6 = asyncUDPSocket?.writeStream6 {
-            CFWriteStreamUnscheduleFromRunLoop(writeStream6, runLoop, CFRunLoopMode.defaultMode)
-        }
-    }
 }
 #endif

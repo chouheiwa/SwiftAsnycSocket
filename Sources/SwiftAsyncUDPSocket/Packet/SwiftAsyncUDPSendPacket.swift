@@ -30,4 +30,12 @@ class SwiftAsyncUDPSendPacket: SwiftAsyncUDPPacket {
         self.timeout = timeout
         self.tag = tag
     }
+
+    final class func == (left: SwiftAsyncUDPSendPacket, right: SwiftAsyncUDPPacket?) -> Bool {
+        guard let right = right as? SwiftAsyncUDPSendPacket else {
+            return false
+        }
+
+        return left === right
+    }
 }
