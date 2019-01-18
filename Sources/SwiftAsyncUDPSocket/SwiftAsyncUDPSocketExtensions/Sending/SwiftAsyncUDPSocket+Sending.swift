@@ -2,7 +2,7 @@
 //  SwiftAsyncUDPSocket+Sending.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/15.
+//  Created by chouheiwa on 2019/1/15.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 
@@ -39,11 +39,11 @@ extension SwiftAsyncUDPSocket {
                 return
             }
 
-            if currentSend.resolvedError != nil {
+            if let resolvedError = currentSend.resolvedError {
                 delegateQueue?.async {
                     self.delegate?.updSocket(self,
                                              didNotSendDataWith: currentSend.tag,
-                                             dueTo: currentSend.resolvedError)
+                                             dueTo: resolvedError)
                 }
 
                 self.currentSend = nil
@@ -98,7 +98,7 @@ extension SwiftAsyncUDPSocket {
 
             sendFilter.queue.async {
                 let allowed = sendFilter.filterBlock(currentSend.buffer,
-                                                     address.address,
+                                                     address,
                                                      currentSend.tag)
                 self.socketQueue.async {
                     currentSend.filterInProgress = false
@@ -114,7 +114,7 @@ extension SwiftAsyncUDPSocket {
 
             socketQueueDo {
                 allowed = sendFilter.filterBlock(currentSend.buffer,
-                                                 address.address,
+                                                 address,
                                                  currentSend.tag)
             }
 
@@ -269,7 +269,7 @@ extension SwiftAsyncUDPSocket {
     }
 
     func createSocket6() throws {
-        socket4FD = try createSocket(domain: AF_INET6)
+        socket6FD = try createSocket(domain: AF_INET6)
 
         setupSendAndReceiveSources(isSocket4: false)
 
@@ -312,11 +312,11 @@ extension SwiftAsyncUDPSocket {
                                               reason: "Error enabling address reuse (setsockopt)")
         }
 
-        var maxSendSize = self.maxSendSizeStore
+        var maxSendSize = Int(maxSendSizeStore)
 
         result = Darwin.setsockopt(socketFD, SOL_SOCKET, SO_SNDBUF,
                                    &maxSendSize,
-                                   socklen_t(MemoryLayout<Int32>.size))
+                                   4)
 
         guard result != -1 else {
             Darwin.close(socketFD)

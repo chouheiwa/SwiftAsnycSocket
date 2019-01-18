@@ -2,7 +2,7 @@
 //  SwiftAsyncUDPSocket+Notify.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/16.
+//  Created by chouheiwa on 2019/1/16.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 

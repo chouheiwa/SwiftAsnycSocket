@@ -2,18 +2,17 @@
 //  SwiftAsyncUDPSocket+Connect.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/15.
+//  Created by chouheiwa on 2019/1/15.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 
 import Foundation
 
 extension SwiftAsyncUDPSocket {
-
     func preConnect() throws {
         try preOpen()
 
-        guard flags.contains(.connecting) || flags.contains(.didConnect) else {
+        guard !flags.contains(.connecting) && !flags.contains(.didConnect) else {
             throw SwiftAsyncSocketError.badConfig(msg:
                 "Cannot connect a socket more than once.")
         }
@@ -22,54 +21,6 @@ extension SwiftAsyncUDPSocket {
             throw SwiftAsyncSocketError.badConfig(msg:
                 "Both IPv4 and IPv6 have been disabled. " +
                 "Must enable at least one protocol first.")
-        }
-    }
-
-    public func connect(to host: String, port: UInt16) throws {
-        var err: SwiftAsyncSocketError?
-
-        socketQueueDo {
-            do {
-                try self.connectPreJob(prepareBlock: { (packet) in
-                    packet.resolveInProgress = true
-
-                    self.asyncResolved(host: host, port: port, completionBlock: {
-                        packet.resolveInProgress = false
-                        packet.resolvedAddresses = $0
-                        packet.resolvedError = $1
-
-                        self.maybeConnect()
-                    })
-                })
-            } catch let error as SwiftAsyncSocketError {
-                err = error
-            } catch {
-                fatalError("\(error)")
-            }
-        }
-
-        if let error = err {
-            throw error
-        }
-    }
-
-    public func connect(to address: Data) throws {
-        var err: SwiftAsyncSocketError?
-
-        socketQueueDo {
-            do {
-                try self.connectPreJob(prepareBlock: { (packet) in
-                    packet.resolvedAddresses = try? SocketDataType(data: address)
-                })
-            } catch let error as SwiftAsyncSocketError {
-                err = error
-            } catch {
-                fatalError("\(error)")
-            }
-        }
-
-        if let error = err {
-            throw error
         }
     }
 
@@ -100,9 +51,9 @@ extension SwiftAsyncUDPSocket {
             return
         }
 
-        if currentSend.resolvedError != nil {
+        if let resolvedError = currentSend.resolvedError {
             delegateQueue?.async {
-                self.delegate?.updSocket(self, didNotConnect: currentSend.resolvedError)
+                self.delegate?.updSocket(self, didNotConnect: resolvedError)
             }
         } else {
             guard let address = currentSend.resolvedAddresses else {
@@ -114,6 +65,8 @@ extension SwiftAsyncUDPSocket {
                 let data = try get(from: address)
 
                 try connect(address: data)
+
+                flags.insert([.didBind, .didConnect])
 
                 cachedConnectedAddress = data
 

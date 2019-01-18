@@ -2,7 +2,7 @@
 //  SwiftAsyncUDPSocket+Bind.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/16.
+//  Created by chouheiwa on 2019/1/16.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 
@@ -28,57 +28,7 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
-    public func bind(to interface: String? = nil,
-                     port: UInt16) throws {
-        var errors: SwiftAsyncSocketError?
-
-        socketQueueDo {
-            do {
-                try self.preBind()
-
-                guard let dataType = SocketDataType.getInterfaceAddress(interface: interface ?? "",
-                                                                        port: port) else {
-                    throw SwiftAsyncSocketError.badParamError("Unknown interface. "
-                        + "Specify valid interface by name (e.g. \"en1\") or IP address.")
-                }
-                try self.bind(toData: dataType)
-
-                self.flags.insert(.didBind)
-            } catch let error as SwiftAsyncSocketError {
-                errors = error
-            } catch {
-                fatalError("\(error)")
-            }
-        }
-
-        if let error = errors {
-            throw error
-        }
-    }
-
-    public func bind(to address: Data) throws {
-        var errors: SwiftAsyncSocketError?
-
-        socketQueueDo {
-            do {
-                try self.preBind()
-
-                try self.bind(toData: try SocketDataType(data: address))
-
-                self.flags.insert(.didBind)
-            } catch let error as SwiftAsyncSocketError {
-                errors = error
-            } catch {
-                fatalError("\(error)")
-            }
-        }
-
-        if let error = errors {
-            throw error
-        }
-    }
-
-    private func bind(toData data: SocketDataType) throws {
+    func bind(toData data: SocketDataType) throws {
         var dataType = data
         // All judge with change
         try dataType.change(IPv4Enable: isIPv4Enable, IPv6Enable: isIPv6Enable)

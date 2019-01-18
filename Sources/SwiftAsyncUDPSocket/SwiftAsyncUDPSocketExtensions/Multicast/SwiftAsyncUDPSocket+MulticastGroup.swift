@@ -2,7 +2,7 @@
 //  SwiftAsyncUDPSocket+Multicast.swift
 //  SwiftAsyncSocket iOS
 //
-//  Created by Di on 2019/1/17.
+//  Created by chouheiwa on 2019/1/17.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 
@@ -60,17 +60,7 @@ extension SwiftAsyncUDPSocket {
                 "Cannot join a multicast group if connected.")
         }
     }
-
-    func join(multiscast group: String,
-              interface: String? = nil) throws {
-        try performWithQueue(requestType: .join, group: group, interface: interface)
-    }
-
-    func leave(multiscast group: String,
-               interface: String? = nil) throws {
-        try performWithQueue(requestType: .leave, group: group, interface: interface)
-    }
-
+    
     enum MulticastType {
         case join, leave
 

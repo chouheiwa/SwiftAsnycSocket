@@ -2,7 +2,7 @@
 //  SocketDataType.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/14.
+//  Created by chouheiwa on 2019/1/14.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 

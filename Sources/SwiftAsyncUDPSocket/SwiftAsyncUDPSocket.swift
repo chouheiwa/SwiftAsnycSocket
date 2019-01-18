@@ -2,7 +2,7 @@
 //  SwiftAsyncUDPSocket.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/10.
+//  Created by chouheiwa on 2019/1/10.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 
@@ -24,11 +24,11 @@ public class SwiftAsyncUDPSocket: NSObject {
 
     var config: SwiftAsyncUdpSocketConfig = []
 
-    var max4ReceiveSizeStore: UInt16 = 65535
+    var max4ReceiveSizeStore: Int16 = Int16.max
 
-    var max6ReceiveSizeStore: UInt32 = 65535
+    var max6ReceiveSizeStore: Int32 = Int32(Int16.max)
 
-    var maxSendSizeStore: UInt16 = 65535
+    var maxSendSizeStore: Int16 = Int16.max
 
     var socket4FD: Int32 = SwiftAsyncSocketKeys.socketNull
 
@@ -68,7 +68,7 @@ public class SwiftAsyncUDPSocket: NSObject {
 
     public init(delegate: SwiftAsyncUDPSocketDelegate?,
                 delegateQueue: DispatchQueue?,
-                socketQueue: DispatchQueue?) {
+                socketQueue: DispatchQueue? = nil) {
         delegateStore = delegate
         delegateQueueStore = delegateQueue
 

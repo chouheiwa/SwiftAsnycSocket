@@ -2,13 +2,14 @@
 //  SwiftAsyncUDPSocket+Close.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/18.
+//  Created by chouheiwa on 2019/1/18.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
 
 import Foundation
 // MARK: - close
 extension SwiftAsyncUDPSocket {
+
     public func close() {
         socketQueueDo {
             self.close(error: nil)

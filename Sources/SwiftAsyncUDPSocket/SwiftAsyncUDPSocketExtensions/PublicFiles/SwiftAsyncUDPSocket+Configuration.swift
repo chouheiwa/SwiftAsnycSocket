@@ -2,12 +2,11 @@
 //  SwiftAsyncUDPSocket+OtherVars.swift
 //  SwiftAsyncSocket
 //
-//  Created by Di on 2019/1/11.
+//  Created by chouheiwa on 2019/1/11.
 //  Copyright © 2019 chouheiwa. All rights reserved.
 //
-
 import Foundation
-
+// MARK: - Configuration
 extension SwiftAsyncUDPSocket {
     public weak var delegate: SwiftAsyncUDPSocketDelegate? {
         get {
@@ -41,6 +40,7 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
+    /// Default is true
     public var isIPv4Enable: Bool {
         get {
             var result = false
@@ -61,7 +61,7 @@ extension SwiftAsyncUDPSocket {
             }
         }
     }
-
+    /// Default is true
     public var isIPv6Enable: Bool {
         get {
             var result = false
@@ -148,9 +148,9 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
-    public var maxReceiveIPv4BufferSize: UInt16 {
+    public var maxReceiveIPv4BufferSize: Int16 {
         get {
-            var result: UInt16 = 0
+            var result: Int16 = 0
 
             socketQueueDo {
                 result = self.max4ReceiveSizeStore
@@ -164,9 +164,9 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
-    public var maxReceiveIPv6BufferSize: UInt32 {
+    public var maxReceiveIPv6BufferSize: Int32 {
         get {
-            var result: UInt32 = 0
+            var result: Int32 = 0
 
             socketQueueDo {
                 result = self.max6ReceiveSizeStore
@@ -180,9 +180,12 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
-    public var maxSendBufferSize: UInt16 {
+    /// If you want to change the max size,
+    /// You must set this before create socket
+    /// otherwise it won't work
+    public var maxSendBufferSize: Int16 {
         get {
-            var result: UInt16 = 0
+            var result: Int16 = 0
 
             socketQueueDo {
                 result = self.maxSendSizeStore
@@ -196,6 +199,8 @@ extension SwiftAsyncUDPSocket {
         }
     }
 
+    /// userData will only be used for you to identifier the socket,
+    /// In other words, the data will not be used by socket
     public var userData: Any? {
         get {
             var result: Any?
@@ -212,7 +217,7 @@ extension SwiftAsyncUDPSocket {
         }
     }
 }
-
+// MARK: - Diagnostics
 extension SwiftAsyncUDPSocket {
     public var cachedLocalAddress4: SwiftAsyncUDPSocketAddress? {
         get {

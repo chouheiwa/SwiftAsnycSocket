@@ -10,7 +10,6 @@ import XCTest
 import SwiftAsyncSocket
 
 class SwitAsyncReadPacketTest: XCTestCase {
-
     var readPacket: SwiftAsyncReadPacket!
 
     override func setUp() {
