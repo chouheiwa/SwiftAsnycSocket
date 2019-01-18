@@ -16,12 +16,12 @@ extension SwiftAsyncUDPSocket {
             guard let data = try doReceive(type: SwiftAsyncUDPSocketAddress.Types(isSock4: isIPv4)) else {
                 return
             }
-
-            guard data.address == cachedConnectedAddress else {
-                doReceive()
-                return
+            if flags.contains(.didConnect) {
+                guard data.address == cachedConnectedAddress else {
+                    doReceive()
+                    return
+                }
             }
-
             doReceiveEvluate(data: data)
         } catch let error as SwiftAsyncSocketError {
             close(error: error)
@@ -50,6 +50,12 @@ extension SwiftAsyncUDPSocket {
         }
         guard !(flags.contains(.receiveOnce) && pendingFilterOperations > 0) else {
             suspendBlock()
+            return nil
+        }
+
+        guard socket4FDBytesAvailable > 0 || socket6FDBytesAvailable > 0 else {
+            resumeReceive4Source()
+            resumeReceive6Source()
             return nil
         }
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/SwiftAsyncUDPSocket/SwiftAsyncUDPSocketExtensions/Receiving/SwiftAsyncUDPSocket+Receiving.swift"
+            timestampString = "569506757.937651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "doReceivePreformRecv(type:bufSize:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftAsyncSocket.SwiftAsyncUDPSocket.(doReceivePreformRecv in _65AEFAD8B9DE1B7D660EEA56182FE974)(type: SwiftAsyncSocket.SwiftAsyncUDPSocketAddress.Types, bufSize: inout Swift.Int) -&gt; (Swift.UnsafeMutableRawPointer, (Swift.Int, Foundation.Data))"
+                  moduleName = "SwiftAsyncSocket"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Di/Desktop/iOS-Code/CocoaPods-Spec/SwiftAsyncSocket/Sources/SwiftAsyncUDPSocket/SwiftAsyncUDPSocketExtensions/Receiving/SwiftAsyncUDPSocket+Receiving.swift"
+                  timestampString = "569503961.8028671"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
+                  offsetFromSymbolStart = "951">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.UnsafeMutablePointer&lt;Any&gt;) -&gt; Swift.UnsafeMutablePointer&lt;__C.sockaddr&gt; in SwiftAsyncSocket.SwiftAsyncUDPSocket.(doReceivePreformRecv in _65AEFAD8B9DE1B7D660EEA56182FE974)(type: SwiftAsyncSocket.SwiftAsyncUDPSocketAddress.Types, bufSize: inout Swift.Int) -&gt; (Swift.UnsafeMutableRawPointer, (Swift.Int, Foundation.Data))"
+                  moduleName = "SwiftAsyncSocket"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Di/Desktop/iOS-Code/CocoaPods-Spec/SwiftAsyncSocket/Sources/SwiftAsyncUDPSocket/SwiftAsyncUDPSocketExtensions/Receiving/SwiftAsyncUDPSocket+Receiving.swift"
+                  timestampString = "569503961.805076"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

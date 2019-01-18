@@ -17,7 +17,7 @@ extension SwiftAsyncUDPSocket {
                 "Cannot bind a socket more than once.")
         }
 
-        guard !flags.contains(.connecting) && flags.contains(.didConnect) else {
+        guard !flags.contains(.connecting) && !flags.contains(.didConnect) else {
             throw SwiftAsyncSocketError.badConfig(msg:
                 "Cannot bind after connecting. If needed, bind first, then connect.")
         }
@@ -62,11 +62,15 @@ extension SwiftAsyncUDPSocket {
                 try self.createSocket6()
             }
 
-            guard Darwin.bind(self.socket4FD, IPv4Data.convert(), socklen_t(IPv4Data.count)) != -1 else {
+            var result = Darwin.bind(self.socket4FD, IPv4Data.convert(), socklen_t(IPv4Data.count))
+
+            guard result != -1 else {
                 throw errorDone()
             }
 
-            guard Darwin.bind(self.socket6FD, IPv6Data.convert(), socklen_t(IPv6Data.count)) != -1 else {
+            result = Darwin.bind(self.socket6FD, IPv6Data.convert(), socklen_t(IPv6Data.count))
+
+            guard result != -1 else {
                 throw errorDone()
             }
         }

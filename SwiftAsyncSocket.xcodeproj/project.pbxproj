@@ -161,6 +161,8 @@
 		02EDC7E421F1BCBD00423CDE /* SwiftAsyncUDPSocket+Connect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC7E221F1BCBD00423CDE /* SwiftAsyncUDPSocket+Connect.swift */; };
 		02EDC7E621F1C1E900423CDE /* SwiftAsyncUDPSocket+Multicast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC7E521F1C1E900423CDE /* SwiftAsyncUDPSocket+Multicast.swift */; };
 		02EDC7E721F1C1E900423CDE /* SwiftAsyncUDPSocket+Multicast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC7E521F1C1E900423CDE /* SwiftAsyncUDPSocket+Multicast.swift */; };
+		02EDC7EB21F1D3CF00423CDE /* UdpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC7E821F1D1E900423CDE /* UdpServer.swift */; };
+		02EDC7EC21F1D3CF00423CDE /* UdpServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EDC7E821F1D1E900423CDE /* UdpServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +267,7 @@
 		02EDC7DE21F1BA6900423CDE /* SwiftAsyncUDPSocket+Bind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncUDPSocket+Bind.swift"; sourceTree = "<group>"; };
 		02EDC7E221F1BCBD00423CDE /* SwiftAsyncUDPSocket+Connect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncUDPSocket+Connect.swift"; sourceTree = "<group>"; };
 		02EDC7E521F1C1E900423CDE /* SwiftAsyncUDPSocket+Multicast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncUDPSocket+Multicast.swift"; sourceTree = "<group>"; };
+		02EDC7E821F1D1E900423CDE /* UdpServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdpServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -667,6 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				02EDC7D521F17E6700423CDE /* SwiftAsyncUDPSocketTest.swift */,
+				02EDC7E821F1D1E900423CDE /* UdpServer.swift */,
 			);
 			path = UDP_Test;
 			sourceTree = "<group>";
@@ -1042,6 +1046,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02EDC7EB21F1D3CF00423CDE /* UdpServer.swift in Sources */,
 				02C6367021E617340078257D /* Server.swift in Sources */,
 				02EDC7D621F17E6700423CDE /* SwiftAsyncUDPSocketTest.swift in Sources */,
 				02C6367121E617340078257D /* SwiftAsyncTest.swift in Sources */,
@@ -1053,6 +1058,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02EDC7EC21F1D3CF00423CDE /* UdpServer.swift in Sources */,
 				02C6367321E617350078257D /* Server.swift in Sources */,
 				02EDC7D721F17E6A00423CDE /* SwiftAsyncUDPSocketTest.swift in Sources */,
 				02C6367421E617350078257D /* SwiftAsyncTest.swift in Sources */,

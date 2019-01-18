@@ -206,44 +206,38 @@ extension SwiftAsyncUDPSocket {
                                    address.address.convert(),
                                    socklen_t(address.address.count))
         }
-
         // If the socket wasn't binding before, now is the time
         if !flags.contains(.didBind) {
             flags.insert(.didBind)
         }
-
-        guard result >= 0 || errno == EAGAIN else {
-            self.close(error: SwiftAsyncSocketError.errno(code: errno,
-                                                          reason: "Error in send() function."))
-            return
-        }
-
-        guard result == 0 || errno == EAGAIN else {
-            // Send complete
-
-            delegateQueue?.async {
-                self.delegate?.updSocket(self, didSendDataWith: currentSend.tag)
+        // Check result
+        guard result > 0 else {
+            guard result == 0 || errno == EAGAIN else {
+                self.close(error: SwiftAsyncSocketError.errno(code: errno,
+                                                              reason: "Error in send() function."))
+                return
             }
-            endCurrentSend()
-            maybeDequeueSend()
+            // Not enough room in the underlying OS socket send buffer.
+            // Wait for a notification of available space.
+            if !flags.contains(.sock4CanAcceptBytes) {
+                resumeSend4Source()
+            }
 
+            if !flags.contains(.sock6CanAcceptBytes) {
+                resumeSend6Source()
+            }
+
+            if sendTimer == nil && currentSend.timeout >= 0 {
+                setupSendTimer(timeout: currentSend.timeout)
+            }
             return
         }
-
-        // Not enough room in the underlying OS socket send buffer.
-        // Wait for a notification of available space.
-
-        if !flags.contains(.sock4CanAcceptBytes) {
-            resumeSend4Source()
+        // Send complete
+        delegateQueue?.async {
+            self.delegate?.updSocket(self, didSendDataWith: currentSend.tag)
         }
-
-        if !flags.contains(.sock6CanAcceptBytes) {
-            resumeSend6Source()
-        }
-
-        if sendTimer == nil && currentSend.timeout >= 0 {
-            setupSendTimer(timeout: currentSend.timeout)
-        }
+        endCurrentSend()
+        maybeDequeueSend()
     }
 
     func createSocket(IPv4: Bool, IPv6: Bool) throws {

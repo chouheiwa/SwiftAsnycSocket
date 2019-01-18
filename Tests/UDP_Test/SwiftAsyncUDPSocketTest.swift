@@ -9,32 +9,63 @@
 import XCTest
 import SwiftAsyncSocket
 class SwiftAsyncUDPSocketTest: XCTestCase {
-    enum TestKind {
-        case testConnect
+    enum Kind {
+        case testConnectAndSend
+        case testReceiveData
     }
 
-    var socket: SwiftAsyncUDPSocket?
+    var kind: Kind?
+
+    var server: UdpServer!
+
+    var socket: SwiftAsyncUDPSocket!
     var testException: XCTestExpectation?
 
     override func setUp() {
         socket = SwiftAsyncUDPSocket(delegate: self,
                                      delegateQueue: DispatchQueue.global())
+        do {
+            server = try UdpServer(port: 33255)
+        } catch {
+            XCTAssert(false, "\(error)")
+        }
     }
 
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() {
+    func testReceiveData() {
+        kind = .testReceiveData
         let testException = XCTestExpectation(description: "11111111")
 
         self.testException = testException
-        guard let socket = socket else {
-            return
+
+        let data = "data".data(using: .utf8) ?? Data()
+
+        server.didReceiveData = {
+            XCTAssert($0 == data, "Data was not equal")
+
+            testException.fulfill()
         }
+
         do {
-            try socket.connect(to: "lolololo.com", port: 9090)
-            socket.send(data: "123".data(using: .utf8) ?? Data(), timeout: 5, tag: 10)
+            try socket.connect(to: "127.0.0.1", port: 33255)
+            socket.send(data: data, timeout: -1, tag: 10)
+        } catch {
+            XCTAssert(false, "\(error)")
+        }
+
+        self.wait(for: [testException], timeout: 50)
+    }
+
+    func testConnect() {
+        kind = .testConnectAndSend
+        let testException = XCTestExpectation(description: "11111111")
+
+        self.testException = testException
+        do {
+            try socket.connect(to: "127.0.0.1", port: 33255)
+            socket.send(data: "123".data(using: .utf8) ?? Data(), timeout: -1, tag: 10)
         } catch {
             XCTAssert(false, "\(error)")
         }
@@ -53,11 +84,16 @@ extension SwiftAsyncUDPSocketTest: SwiftAsyncUDPSocketDelegate {
     }
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didSendDataWith tag: Int) {
-        print("\(#function)")
+        switch kind {
+        case .testConnectAndSend?:
+            testException?.fulfill()
+        default:
+            break
+        }
     }
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didNotSendDataWith tag: Int, dueTo error: SwiftAsyncSocketError) {
-        print("2222")
+        print("\(error)")
     }
 
     func updSocket(_ socket: SwiftAsyncUDPSocket, didCloseWith error: SwiftAsyncSocketError?) {
