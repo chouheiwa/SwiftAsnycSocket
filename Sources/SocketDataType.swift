@@ -193,15 +193,15 @@ public extension SocketDataType {
         guard getifaddrs(&addrs) == 0 else {
             return nil
         }
-        var cursor = addrs
+        guard let firstAddr = addrs else {
+            return nil
+        }
+
         var addr4: Data?
         var addr6: Data?
-        while cursor != nil {
-            if let cursor = cursor {
-                getAddr(from: cursor.pointee, addr4: &addr4, addr6: &addr6, iface: iface, port: port)
-            }
 
-            cursor = cursor?.pointee.ifa_next
+        for pointer in sequence(first: firstAddr, next: {$0.pointee.ifa_next}) {
+            getAddr(from: pointer.pointee, addr4: &addr4, addr6: &addr6, iface: iface, port: port)
         }
         freeifaddrs(addrs)
         return try? SocketDataType(IPv4: addr4, IPv6: addr6)

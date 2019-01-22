@@ -91,10 +91,10 @@ extension SwiftAsyncSocket {
 
     /// Result of current read|Write
     public struct ReadWriteProgress {
-        let tag: Int
-        let bytesDone: UInt
-        let total: UInt
-        let progress: Float
+        public let tag: Int
+        public let bytesDone: UInt
+        public let total: UInt
+        public let progress: Float
     }
 
     /// Return progress of currentRead, return zero if no currentRead or currentRead is

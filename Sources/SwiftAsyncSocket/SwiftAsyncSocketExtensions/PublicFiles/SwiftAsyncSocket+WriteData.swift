@@ -7,9 +7,8 @@
 //
 
 import Foundation
-
+// MARK: - WriteData
 extension SwiftAsyncSocket {
-
     /// Writes data to the socket, and calls the delegate when finished.
     /// If you pass in nil or zero-length data,
     /// this method does nothing and the delegate will not be called.

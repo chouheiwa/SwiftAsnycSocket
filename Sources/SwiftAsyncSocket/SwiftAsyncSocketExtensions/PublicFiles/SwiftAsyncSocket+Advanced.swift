@@ -8,8 +8,8 @@
 
 import Foundation
 
+// MARK: - Advanced
 extension SwiftAsyncSocket {
-
     /**
      *  The same question maybe in the SwiftAsyncSocket is that the deadlock
      */

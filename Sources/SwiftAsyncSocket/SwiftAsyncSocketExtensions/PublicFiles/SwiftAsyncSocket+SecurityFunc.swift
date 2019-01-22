@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+// MARK: - TLSSetting
 extension SwiftAsyncSocket {
     public struct TLSSettings {
         /// set this to true if is server

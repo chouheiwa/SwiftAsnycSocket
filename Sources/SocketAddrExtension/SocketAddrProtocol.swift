@@ -176,29 +176,25 @@ extension sockaddr_in6: SocketAddrProtocol {
         guard getifaddrs(&addrs) == 0 else {
             return 0
         }
+        guard let firstAddr = addrs else {
+            return 0
+        }
 
         defer {
             freeifaddrs(addrs)
         }
 
-        var cursor = addrs
+        for pointer in sequence(first: firstAddr, next: {$0.pointee.ifa_next}) {
+            if pointer.pointee.ifa_addr.pointee.sa_family != AF_INET6 { continue }
 
-        while cursor != nil {
-            guard let realCursor = cursor else {
-                fatalError("Logic error")
+            let sock = pointer.pointee.ifa_addr.withMemoryRebound(to: sockaddr_in6.self,
+                                                                  capacity: 1, {$0})
+            var target = sock.pointee.sin6_addr
+            var compare = self.sin6_addr
+
+            if memcmp(&target, &compare, MemoryLayout<in6_addr>.size) == 0 {
+                return if_nametoindex(pointer.pointee.ifa_name)
             }
-
-            if realCursor.pointee.ifa_addr.pointee.sa_family == AF_INET6 {
-                let sock = realCursor.pointee.ifa_addr.withMemoryRebound(to: sockaddr_in6.self,
-                                                                         capacity: 1, {$0})
-                var target = sock.pointee.sin6_addr
-                var compare = self.sin6_addr
-
-                if memcmp(&target, &compare, MemoryLayout<in6_addr>.size) == 0 {
-                    return if_nametoindex(realCursor.pointee.ifa_name)
-                }
-            }
-            cursor = realCursor.pointee.ifa_next
         }
 
         return 0

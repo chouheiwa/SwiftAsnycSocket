@@ -1,0 +1,3 @@
+[submodule "Examples/iOSExamples/HttpClient"]
+	path = Examples/iOSExamples/HttpClient
+	url = https://github.com/SwiftAsyncSocket/SwiftAsyncHttpClient.git
