@@ -66,6 +66,8 @@ extension SwiftAsyncSocketPreBuffer {
 
         preBuffer = newBuffer
 
+        preBufferSize = newPreBufferSize
+
         readPointer = preBuffer + readPointerOffset
 
         writePointer = preBuffer + writePointerOffset

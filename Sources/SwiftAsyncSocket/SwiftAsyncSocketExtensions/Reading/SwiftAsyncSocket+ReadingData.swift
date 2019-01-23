@@ -225,9 +225,9 @@ extension SwiftAsyncSocket {
         guard bytesRead > 0 else { return (socketEOF, waiting) }
 
         guard !doReadDataCanReadLength(readIntoPreBuffer: readIntoPreBuffer,
-                                totalBytesReadForCurrentRead: &totalBytesReadForCurrentRead,
-                                bytesRead: bytesRead,
-                                done: &done) else {
+                                       totalBytesReadForCurrentRead: &totalBytesReadForCurrentRead,
+                                       bytesRead: bytesRead,
+                                       done: &done) else {
                                     return (socketEOF, waiting)}
 
         guard try !doReadDataHaveTerminator(readIntoPreBuffer: readIntoPreBuffer,

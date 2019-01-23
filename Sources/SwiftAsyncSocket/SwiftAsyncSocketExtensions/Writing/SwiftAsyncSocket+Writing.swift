@@ -62,9 +62,9 @@ extension SwiftAsyncSocket {
                 var timeout = 0.0
 
                 timeout = self.delegate?.socket(self,
-                                           shouldTimeoutWriteWith: currentWrite.tag,
-                                           elapsed: currentWrite.timeout,
-                                           bytesDone: currentWrite.bytesDone) ?? 0.0
+                                                shouldTimeoutWriteWith: currentWrite.tag,
+                                                elapsed: currentWrite.timeout,
+                                                bytesDone: currentWrite.bytesDone) ?? 0.0
 
                 self.socketQueue.async {
                     self.doWriteTimeout(extension: timeout)

@@ -233,7 +233,7 @@ extension SwiftAsyncSocket {
                           &reuseOn,
                           Darwin.socklen_t(MemoryLayout.size(ofValue: reuseOn)))
 
-        // Prevent SIGPIPE signals
+        // Prevent SIGPIPE signals to ignore crash
 
         var nosigpipe = 1
 

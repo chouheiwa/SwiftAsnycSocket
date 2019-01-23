@@ -17,7 +17,7 @@ extension SwiftAsyncUDPSocket {
     ///   - interface: a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35")
     /// - Throws: error
     public func join(multiscast group: String,
-              interface: String? = nil) throws {
+                     interface: String? = nil) throws {
         try performWithQueue(requestType: .join, group: group, interface: interface)
     }
     /// Leave multicast group.
@@ -27,7 +27,7 @@ extension SwiftAsyncUDPSocket {
     ///   - interface: a name (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.4.35")
     /// - Throws: error
     public func leave(multiscast group: String,
-               interface: String? = nil) throws {
+                      interface: String? = nil) throws {
         try performWithQueue(requestType: .leave, group: group, interface: interface)
     }
 }

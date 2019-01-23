@@ -60,7 +60,7 @@ extension SwiftAsyncUDPSocket {
                 "Cannot join a multicast group if connected.")
         }
     }
-    
+
     enum MulticastType {
         case join, leave
 
