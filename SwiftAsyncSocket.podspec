@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.swift_version = "4.2"
   s.name         = "SwiftAsyncSocket"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "A GCD base of Socket writing by Swift 4.2"
   s.description  = <<-DESC
 A socket connection tool writing by Swift.

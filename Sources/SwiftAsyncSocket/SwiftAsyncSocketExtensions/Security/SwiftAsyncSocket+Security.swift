@@ -90,6 +90,8 @@ extension SwiftAsyncSocket {
 
             sslErrCode = noErr
             lastSSLHandshakeError = noErr
+
+            ssl_continueSSLHandshake()
         } catch let error as SwiftAsyncSocketError {
             closeSocket(error: error)
             return
@@ -118,26 +120,31 @@ extension SwiftAsyncSocket {
 
     private func ssl_startTLSSetIOFuncs(sslContext: SSLContext) throws {
         let status = Security.SSLSetIOFuncs(sslContext, { (ref, data, dataLength) -> OSStatus in
-            let `self` = ref.assumingMemoryBound(to: SwiftAsyncSocket.self).pointee
+            let `self`  = Unmanaged<SwiftAsyncSocket>
+                .fromOpaque(ref)
+                .takeUnretainedValue()
 
             assert(DispatchQueue.getSpecific(key: self.queueKey) != nil, "What the deuce?")
 
-            return self.sslWrite(buffer: data, length: dataLength)
+            return self.sslRead(buffer: data, length: dataLength)
         }, { (ref, data, dataLength) -> OSStatus in
-            let `self` = ref.assumingMemoryBound(to: SwiftAsyncSocket.self).pointee
+            let `self` = Unmanaged<SwiftAsyncSocket>
+                .fromOpaque(ref)
+                .takeUnretainedValue()
 
             assert(DispatchQueue.getSpecific(key: self.queueKey) != nil, "What the deuce?")
 
-            return self.sslRead(buffer: UnsafeMutableRawPointer(mutating: data), length: dataLength)
+            return self.sslWrite(buffer: UnsafeMutableRawPointer(mutating: data), length: dataLength)
         })
 
         guard status == noErr else { throw SwiftAsyncSocketError(msg: "Error in SSLSetIOFuncs") }
     }
 
     private func ssl_startTLSSetConnection(sslContext: SSLContext) throws {
-        var `self` = self
+        let pointer = Unmanaged.passUnretained(self).toOpaque()
 
-        let status = Security.SSLSetConnection(sslContext, UnsafeMutableRawPointer(&self))
+        let status = Security.SSLSetConnection(sslContext,
+                                               pointer)
 
         guard status == noErr else { throw SwiftAsyncSocketError(msg: "Error in SSLSetConnection") }
     }

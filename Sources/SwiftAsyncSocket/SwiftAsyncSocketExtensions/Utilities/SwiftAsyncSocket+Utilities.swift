@@ -60,16 +60,13 @@ extension SwiftAsyncSocket {
         guard !flags.contains(.readSourceSuspended) else { return }
 
         // Need Log
-
         readSource?.suspend()
         flags.insert(.readSourceSuspended)
     }
 
     func resumeReadSource() {
         guard flags.contains(.readSourceSuspended) else { return }
-
         // Need Log
-
         readSource?.resume()
         flags.remove(.readSourceSuspended)
     }

@@ -257,7 +257,7 @@
 		02C6361521E614520078257D /* SwiftAsyncWritePacket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncWritePacket.swift; sourceTree = "<group>"; };
 		02C6361621E614520078257D /* SwiftAsyncSocketLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketLog.swift; sourceTree = "<group>"; };
 		02C6367A21E619100078257D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		02C6367B21E619110078257D /* SwiftAsyncSocket.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftAsyncSocket.podspec; sourceTree = "<group>"; };
+		02C6367B21E619110078257D /* SwiftAsyncSocket.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftAsyncSocket.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		02EDC7C221F081F900423CDE /* SwiftAsyncUDPSocket+MulticastGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncUDPSocket+MulticastGroup.swift"; sourceTree = "<group>"; };
 		02EDC7C721F169FD00423CDE /* SwiftAsyncUDPSocket+Enable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncUDPSocket+Enable.swift"; sourceTree = "<group>"; };
 		02EDC7CA21F171D900423CDE /* SwiftAsyncUDPSocket+Send.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwiftAsyncUDPSocket+Send.swift"; sourceTree = "<group>"; };

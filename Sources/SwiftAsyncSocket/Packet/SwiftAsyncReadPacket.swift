@@ -71,7 +71,6 @@ public class SwiftAsyncReadPacket: SwiftAsyncPacketProtocol {
 
 // MARK: - 增大空间
 extension SwiftAsyncReadPacket {
-
     private var availableBufferSpace: UInt {
         let buffSize = buffer.count
 

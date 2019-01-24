@@ -231,7 +231,7 @@ extension SwiftAsyncSocket {
 
         var buffer: UnsafePointer<UInt8> = writeData.convert(offset: Int(currentWrite.bytesDone) + bytesWritten)
 
-        let bytesToWrite = min(writeData.count - Int(currentWrite.bytesDone) - bytesWritten, Int(SIZE_MAX))
+        let bytesToWrite = writeData.count - Int(currentWrite.bytesDone) - bytesWritten
         // NSUInteger may be bigger than size_t (write param 3)
         var bytesRemaining = bytesToWrite
 

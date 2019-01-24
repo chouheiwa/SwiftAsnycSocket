@@ -88,6 +88,7 @@ extension SwiftAsyncSocket {
         currentWrite.timeout += timeout
 
         flags.remove(.writePaused)
+
         doWriteData()
     }
 

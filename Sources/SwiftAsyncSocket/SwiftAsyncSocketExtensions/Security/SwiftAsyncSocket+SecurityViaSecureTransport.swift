@@ -65,6 +65,7 @@ extension SwiftAsyncSocket {
         // 否则，返回值便是其错误码
 
         let status = Security.SSLHandshake(sslContext)
+        lastSSLHandshakeError = status
 
         switch status {
         case noErr:
@@ -79,7 +80,7 @@ extension SwiftAsyncSocket {
             endCurrentWrite()
 
             maybeDequeueRead()
-            maybeDequeueRead()
+            maybeDequeueWrite()
         case Security.errSSLPeerAuthCompleted:
             var trust: SecTrust?
 

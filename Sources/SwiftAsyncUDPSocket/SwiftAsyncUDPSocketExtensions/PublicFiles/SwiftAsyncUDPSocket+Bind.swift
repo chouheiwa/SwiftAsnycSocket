@@ -20,8 +20,8 @@ extension SwiftAsyncUDPSocket {
     ///
     /// - Parameters:
     ///   - interface:
-    ///         - The interface may be a name
-    ///           (e.g. "en1" or "lo0") or the corresponding IP address (e.g. "192.168.1.105").
+    ///         - The interface may be a name (e.g. "en1" or "lo0")
+    ///           or the corresponding IP address (e.g. "192.168.1.105").
     ///         - You may also use the special strings "localhost" or "loopback" to
     ///           specify that the socket only accept packets from the local machine.
     ///   - port:

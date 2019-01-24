@@ -27,7 +27,8 @@ extension SwiftAsyncSocket {
                 fatalError("Code can not run here")
                 #endif
             } else {
-                buffer = try commonTLSReading(estimatedBytesAvailable: estimatedBytesAvailable,
+                buffer = try commonTLSReading(readIntoPreBuffer: &readIntoPreBuffer,
+                                              estimatedBytesAvailable: estimatedBytesAvailable,
                                               waiting: &waiting,
                                               socketEOF: &socketEOF,
                                               bytesRead: &bytesRead)
@@ -120,7 +121,8 @@ extension SwiftAsyncSocket {
         return buffer
     }
 
-    private func commonTLSReading(estimatedBytesAvailable: Int,
+    private func commonTLSReading(readIntoPreBuffer: inout Bool,
+                                  estimatedBytesAvailable: Int,
                                   waiting: inout Bool,
                                   socketEOF: inout Bool,
                                   bytesRead: inout Int) throws -> UnsafeMutablePointer<UInt8> {
@@ -143,9 +145,10 @@ extension SwiftAsyncSocket {
         if defaultReadLength < estimatedBytesAvailable {
             defaultReadLength = estimatedBytesAvailable + (1024 * 16)
         }
+        var bytesToRead: UInt = 0
 
-        let (bytesToRead, readIntoPreBuffer) = currentRead.optimalReadLength(with: UInt(defaultReadLength))
-        bytesRead = min(Int(SIZE_MAX), bytesRead)
+        (bytesToRead, readIntoPreBuffer) = currentRead.optimalReadLength(with: UInt(defaultReadLength))
+        bytesRead = min(Int.max, bytesRead)
 
         // Make sure we have enough room in the buffer for our read.
         //
