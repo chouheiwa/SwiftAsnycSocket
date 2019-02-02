@@ -21,7 +21,6 @@ public class SwiftAsyncSocket: NSObject {
 
     var flags: SwiftAsyncSocketFlags = []
     var config: SwiftAsyncSocketConfig = []
-
     /// Real storable delagate
     weak var delegateStore: SwiftAsyncSocketDelegate?
 

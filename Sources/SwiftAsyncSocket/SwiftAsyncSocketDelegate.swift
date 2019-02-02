@@ -99,7 +99,7 @@ public protocol SwiftAsyncSocketDelegate: class {
     /// If you want to continue read, you can return a non zero time or a negative time to make no timeout
     ///
     /// - Parameters:
-    ///   - soclet: socket
+    ///   - socket: socket
     ///   - tag: read function tag
     ///   - elapsed: already use time
     ///   - bytesDone: already read bytes
@@ -112,11 +112,11 @@ public protocol SwiftAsyncSocketDelegate: class {
     /// If you want to continue write, you can return a non zero time or a negative time to make no timeout
     ///
     /// - Parameters:
-    ///   - soclet: socket
+    ///   - socket: socket
     ///   - tag: write function tag
     ///   - elapsed: already use time
     ///   - bytesDone: already write bytes
-    func socket(_ soclet: SwiftAsyncSocket,
+    func socket(_ socket: SwiftAsyncSocket,
                 shouldTimeoutWriteWith tag: Int,
                 elapsed: TimeInterval,
                 bytesDone: UInt) -> TimeInterval?
@@ -177,12 +177,12 @@ public extension SwiftAsyncSocketDelegate {
 
     public func socket(_ socket: SwiftAsyncSocket, didWriteParticalDataOf length: UInt, with tag: Int) {}
 
-    public func socket(_ soclet: SwiftAsyncSocket,
+    public func socket(_ socket: SwiftAsyncSocket,
                        shouldTimeoutReadWith tag: Int,
                        elapsed: TimeInterval,
                        bytesDone: UInt) -> TimeInterval? { return nil }
 
-    public func socket(_ soclet: SwiftAsyncSocket,
+    public func socket(_ socket: SwiftAsyncSocket,
                        shouldTimeoutWriteWith tag: Int,
                        elapsed: TimeInterval,
                        bytesDone: UInt) -> TimeInterval? { return nil }
