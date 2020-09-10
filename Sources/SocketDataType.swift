@@ -58,7 +58,7 @@ public enum SocketDataType {
 }
 
 public extension SocketDataType {
-    public init(data: Data) throws {
+    init(data: Data) throws {
         var address4: Data?
         var address6: Data?
 
@@ -77,7 +77,7 @@ public extension SocketDataType {
         try self.init(IPv4: address4, IPv6: address6)
     }
 
-    public static func lookup(host: String, port: UInt16,
+    static func lookup(host: String, port: UInt16,
                               hasNumeric: Bool = false,
                               isTCP: Bool = true) throws -> SocketDataType {
         guard host != "localhost" && host != "loopback" else {
