@@ -776,7 +776,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1170;
 				ORGANIZATIONNAME = chouheiwa;
 				TargetAttributes = {
 					02C6352821E60D3F0078257D = {
@@ -787,6 +787,7 @@
 					};
 					02C635C021E613240078257D = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1170;
 					};
 					02C635CF21E613A50078257D = {
 						CreatedOnToolsVersion = 10.1;
@@ -799,6 +800,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 02C6351F21E60D3F0078257D;
 			productRefGroup = 02C6352A21E60D3F0078257D /* Products */;
@@ -1227,7 +1229,7 @@
 				PRODUCT_MODULE_NAME = SwiftAsyncSocket;
 				PRODUCT_NAME = SwiftAsyncSocket;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1253,7 +1255,7 @@
 				PRODUCT_MODULE_NAME = SwiftAsyncSocket;
 				PRODUCT_NAME = SwiftAsyncSocket;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1261,7 +1263,7 @@
 		02C635A721E612230078257D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1283,14 +1285,14 @@
 				PRODUCT_NAME = SwiftAsyncSocket;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		02C635A821E612230078257D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -1312,7 +1314,7 @@
 				PRODUCT_NAME = SwiftAsyncSocket;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1330,7 +1332,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocketTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1349,7 +1351,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.chouheiwa.SwiftAsyncSocketTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

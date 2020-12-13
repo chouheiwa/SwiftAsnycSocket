@@ -158,42 +158,42 @@ public protocol SwiftAsyncSocketDelegate: class {
 // We use extension to make it can be optional
 //       - 为协议完成默认实现。如果你希望启用某些方法，可以对方法进行覆写
 public extension SwiftAsyncSocketDelegate {
-    public func newSocketQueueForConnection(from address: Data,
+    func newSocketQueueForConnection(from address: Data,
                                             on socket: SwiftAsyncSocket) -> DispatchQueue? {return nil}
 
-    public func socketNeedBuffer(_ socket: SwiftAsyncSocket) -> SwiftAsyncSocketBuffer? {return nil}
+    func socketNeedBuffer(_ socket: SwiftAsyncSocket) -> SwiftAsyncSocketBuffer? {return nil}
 
-    public func socket(_ socket: SwiftAsyncSocket, didAccept newSocket: SwiftAsyncSocket) {}
+    func socket(_ socket: SwiftAsyncSocket, didAccept newSocket: SwiftAsyncSocket) {}
 
-    public func socket(_ socket: SwiftAsyncSocket, didConnect toHost: String, port: UInt16) {}
+    func socket(_ socket: SwiftAsyncSocket, didConnect toHost: String, port: UInt16) {}
 
-    public func socket(_ socket: SwiftAsyncSocket, didConnect toURL: URL) {}
+    func socket(_ socket: SwiftAsyncSocket, didConnect toURL: URL) {}
 
-    public func socket(_ socket: SwiftAsyncSocket, didRead data: Data, with tag: Int) {}
+    func socket(_ socket: SwiftAsyncSocket, didRead data: Data, with tag: Int) {}
 
-    public func socket(_ socket: SwiftAsyncSocket, didReadParticalDataOf length: UInt, with tag: Int) {}
+    func socket(_ socket: SwiftAsyncSocket, didReadParticalDataOf length: UInt, with tag: Int) {}
 
-    public func socket(_ socket: SwiftAsyncSocket, didWriteDataWith tag: Int) {}
+    func socket(_ socket: SwiftAsyncSocket, didWriteDataWith tag: Int) {}
 
-    public func socket(_ socket: SwiftAsyncSocket, didWriteParticalDataOf length: UInt, with tag: Int) {}
+    func socket(_ socket: SwiftAsyncSocket, didWriteParticalDataOf length: UInt, with tag: Int) {}
 
-    public func socket(_ socket: SwiftAsyncSocket,
+    func socket(_ socket: SwiftAsyncSocket,
                        shouldTimeoutReadWith tag: Int,
                        elapsed: TimeInterval,
                        bytesDone: UInt) -> TimeInterval? { return nil }
 
-    public func socket(_ socket: SwiftAsyncSocket,
+    func socket(_ socket: SwiftAsyncSocket,
                        shouldTimeoutWriteWith tag: Int,
                        elapsed: TimeInterval,
                        bytesDone: UInt) -> TimeInterval? { return nil }
 
-    public func socketDidClosedReadStream(_ socket: SwiftAsyncSocket) {}
+    func socketDidClosedReadStream(_ socket: SwiftAsyncSocket) {}
 
-    public func socket(_ socket: SwiftAsyncSocket?, didDisconnectWith error: SwiftAsyncSocketError?) {}
+    func socket(_ socket: SwiftAsyncSocket?, didDisconnectWith error: SwiftAsyncSocketError?) {}
 
-    public func socketDidSecure(_ socket: SwiftAsyncSocket) {}
+    func socketDidSecure(_ socket: SwiftAsyncSocket) {}
 
-    public func socket(_ socket: SwiftAsyncSocket,
+    func socket(_ socket: SwiftAsyncSocket,
                        didReceive trust: SecTrust,
                        completionHandler: @escaping ((Bool) -> Void)) -> Bool { return false }
 }

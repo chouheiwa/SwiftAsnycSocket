@@ -70,20 +70,20 @@ public protocol SwiftAsyncUDPSocketDelegate: class {
 }
 
 public extension SwiftAsyncUDPSocketDelegate {
-    public func updSocket(_ socket: SwiftAsyncUDPSocket, didConnectTo address: SwiftAsyncUDPSocketAddress) {}
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didConnectTo address: SwiftAsyncUDPSocketAddress) {}
 
-    public func updSocket(_ socket: SwiftAsyncUDPSocket, didNotConnect error: SwiftAsyncSocketError) {}
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didNotConnect error: SwiftAsyncSocketError) {}
 
-    public func updSocket(_ socket: SwiftAsyncUDPSocket, didSendDataWith tag: Int) {}
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didSendDataWith tag: Int) {}
 
-    public func updSocket(_ socket: SwiftAsyncUDPSocket,
+    func updSocket(_ socket: SwiftAsyncUDPSocket,
                           didNotSendDataWith tag: Int,
                           dueTo error: SwiftAsyncSocketError) {}
 
-    public func updSocket(_ socket: SwiftAsyncUDPSocket,
+    func updSocket(_ socket: SwiftAsyncUDPSocket,
                           didReceive data: Data,
                           from address: SwiftAsyncUDPSocketAddress,
                           withFilterContext filterContext: Any?) {}
 
-    public func updSocket(_ socket: SwiftAsyncUDPSocket, didCloseWith error: SwiftAsyncSocketError?) {}
+    func updSocket(_ socket: SwiftAsyncUDPSocket, didCloseWith error: SwiftAsyncSocketError?) {}
 }
