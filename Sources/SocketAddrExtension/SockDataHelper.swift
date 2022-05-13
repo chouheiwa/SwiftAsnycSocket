@@ -47,7 +47,7 @@ extension SockDataHelper {
     private func host(fromSockAddr4 sockAddr4: inout sockaddr_in) -> String {
         let length = Int(INET_ADDRSTRLEN)
 
-        guard var addrBuf = malloc(length)?.assumingMemoryBound(to: Int8.self) else { fatalError() }
+        guard let addrBuf = malloc(length)?.assumingMemoryBound(to: Int8.self) else { fatalError() }
         memset(addrBuf, 0, length)
 
         defer {
@@ -64,7 +64,7 @@ extension SockDataHelper {
     private func host(fromSockAddr6 sockAddr6: inout sockaddr_in6) -> String {
         let length = Int(INET_ADDRSTRLEN)
 
-        guard var addrBuf = malloc(length)?.assumingMemoryBound(to: Int8.self) else { fatalError() }
+        guard let addrBuf = malloc(length)?.assumingMemoryBound(to: Int8.self) else { fatalError() }
         memset(addrBuf, 0, length)
 
         defer {

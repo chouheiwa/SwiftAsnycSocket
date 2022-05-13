@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SwiftAsyncPacketProtocol: class {}
+protocol SwiftAsyncPacketProtocol {}
 
 /// This struct is for socket read preBuffer
 /// 这个结构体是用来做读取加载区 (有可能配合着预加载区使用)
@@ -230,7 +230,6 @@ extension SwiftAsyncReadPacket {
             maxPreBufferLength = min(preBufferLength, (Int(maxLength) - Int(bytesDone)))
         }
 
-        var seq: [UInt8] = []
         let termBuf: UnsafePointer<UInt8> = terminatorData.convert()
 
         var bufLen = min(bytesDone, (UInt(termLength - 1)))
@@ -244,13 +243,16 @@ extension SwiftAsyncReadPacket {
         let loopCount = Int(bufLen) + maxPreBufferLength - termLength + 1
 
         var result = maxPreBufferLength
+        
+        var seq: Data = Data(count: Int(bufLen) + preLen)
 
         for _ in 0..<loopCount {
             if bufLen > 0 {
-                memcpy(&seq, buf, Int(bufLen))
-                memcpy(&seq + Int(bufLen), pre, preLen)
+                memcpy(seq.convertMutable(), buf, Int(bufLen))
 
-                if memcmp(&seq, termBuf, termLength) == 0 {
+                memcpy(seq.convertMutable(offset: Int(bufLen)), pre, preLen)
+
+                if memcmp(seq.convertMutable(), termBuf, termLength) == 0 {
                     result = preLen
                     found = true
                     break

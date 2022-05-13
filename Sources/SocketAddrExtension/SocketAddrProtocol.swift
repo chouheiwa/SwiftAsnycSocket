@@ -97,7 +97,7 @@ extension SocketAddrProtocol {
 //        var addrBuf: [Int8] = []
         let length = Int(isIPv4 ? INET_ADDRSTRLEN : INET6_ADDRSTRLEN)
 
-        guard var addrBuf = malloc(length)?.assumingMemoryBound(to: Int8.self) else { fatalError() }
+        guard let addrBuf = malloc(length)?.assumingMemoryBound(to: Int8.self) else { fatalError() }
         memset(addrBuf, 0, length)
 
         defer {
@@ -212,9 +212,10 @@ extension sockaddr_in6: SocketAddrProtocol {
         let length = MemoryLayout.size(ofValue: sockaddr_in6())
 
         guard data.count == length else { return nil }
-
-        return data.withUnsafeBytes({ (buffer: UnsafePointer<sockaddr_in6>) -> UnsafeMutablePointer<sockaddr_in6> in
-            return UnsafeMutablePointer(mutating: buffer)
-        })
+        
+        
+        return data.withUnsafeBytes {
+            UnsafeMutablePointer(mutating: $0.bindMemory(to: sockaddr_in6.self).baseAddress!)
+        }
     }
 }

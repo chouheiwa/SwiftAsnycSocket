@@ -10,12 +10,20 @@ import Foundation
 
 extension Data {
     func convert<DataType>(offset: Int = 0) -> UnsafePointer<DataType> {
-        return self.withUnsafeBytes { (buffer: UnsafePointer<DataType>) -> UnsafePointer<DataType> in
-            return buffer} + offset
+        let buffer = self.withUnsafeBytes { buffer in
+            return buffer
+        }
+        let unsafeBufferPointer = buffer.bindMemory(to: DataType.self)
+        
+        return unsafeBufferPointer.baseAddress! + offset
     }
 
     mutating func convertMutable<T>(offset: Int = 0) -> UnsafeMutablePointer<T> {
-        return self.withUnsafeMutableBytes { (buffer: UnsafeMutablePointer<T>) -> UnsafeMutablePointer<T> in
-            return buffer} + offset
+        
+        let buffer = self.withUnsafeMutableBytes { buffer in
+            return buffer.bindMemory(to: T.self)
+        }
+        
+        return buffer.baseAddress! + offset
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol SwiftAsyncUDPSocketDelegate: class {
+public protocol SwiftAsyncUDPSocketDelegate: AnyObject {
     /// By design, UDP protocol doesn't need to connect
     /// So that means, if this method was called,
     /// it can't prove that the server can receive data.

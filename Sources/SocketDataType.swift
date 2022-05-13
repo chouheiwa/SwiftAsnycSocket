@@ -223,7 +223,7 @@ public extension SocketDataType {
 
                 addr4 = nativeAddr4.data
             } else {
-                var ipAddr: UnsafeMutablePointer<Int8> = malloc(Int(INET_ADDRSTRLEN))!
+                let ipAddr: UnsafeMutablePointer<Int8> = malloc(Int(INET_ADDRSTRLEN))!
                     .assumingMemoryBound(to: Int8.self)
 
                 defer {
@@ -251,7 +251,7 @@ public extension SocketDataType {
 
                 addr6 = Data(bytes: &nativeAddr6, count: MemoryLayout.size(ofValue: nativeAddr6))
             } else {
-                var ipAddr: UnsafeMutablePointer<Int8> = malloc(Int(INET6_ADDRSTRLEN))!
+                let ipAddr: UnsafeMutablePointer<Int8> = malloc(Int(INET6_ADDRSTRLEN))!
                     .assumingMemoryBound(to: Int8.self)
 
                 defer {

@@ -13,7 +13,7 @@ import Foundation
 /// the following two conditions are satisfied:
 /// 1. already set delegate
 /// 2. already set delegateQueue
-public protocol SwiftAsyncSocketDelegate: class {
+public protocol SwiftAsyncSocketDelegate: AnyObject {
 
     /// This method will be called before socket(_ socket: SwiftAsyncSocket, didAccept newSocket: SwiftAsyncSocket)
     /// If method return is not nil, then socket action will be done at the return queue.
