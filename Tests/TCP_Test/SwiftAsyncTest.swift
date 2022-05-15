@@ -144,8 +144,8 @@ class SwiftAsyncTest: XCTestCase {
 
         let stringArray = ["This ",
                            "is ",
-                           "a",
-                           " test ",
+                           "a ",
+                           "test ",
                            "socket ",
                            "function"]
 
@@ -175,8 +175,6 @@ class SwiftAsyncTest: XCTestCase {
             }
 
             $0.didReadData = {
-                print("Data is:\(String(data: $0, encoding: .utf8) ?? "")")
-
                 guard $0 == finalData else {
                     XCTAssert(false, "Data error")
                     return
@@ -231,7 +229,6 @@ extension SwiftAsyncTest: SwiftAsyncSocketDelegate {
     }
 
     func socket(_ socket: SwiftAsyncSocket, didWriteDataWith tag: Int) {
-
     }
 
     func socket(_ socket: SwiftAsyncSocket, didRead data: Data, with tag: Int) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol SwiftAsyncPacketProtocol {}
+protocol SwiftAsyncPacketProtocol: AnyObject {}
 
 /// This struct is for socket read preBuffer
 /// 这个结构体是用来做读取加载区 (有可能配合着预加载区使用)
@@ -230,8 +230,6 @@ extension SwiftAsyncReadPacket {
             maxPreBufferLength = min(preBufferLength, (Int(maxLength) - Int(bytesDone)))
         }
 
-        let termBuf: UnsafePointer<UInt8> = terminatorData.convert()
-
         var bufLen = min(bytesDone, (UInt(termLength - 1)))
 
         var buf: UnsafePointer<UInt8> = buffer.convert(offset: Int(startOffset + bytesDone))
@@ -243,17 +241,15 @@ extension SwiftAsyncReadPacket {
         let loopCount = Int(bufLen) + maxPreBufferLength - termLength + 1
 
         var result = maxPreBufferLength
-        
-        var seq: Data = Data(count: Int(bufLen) + preLen)
 
         for _ in 0..<loopCount {
             if bufLen > 0 {
-                memcpy(seq.convertMutable(), buf, Int(bufLen))
+                var data = Data(bytes: buf, count: Int(bufLen))
+                
+                data += Data(bytes: pre, count: preLen)
 
-                memcpy(seq.convertMutable(offset: Int(bufLen)), pre, preLen)
-
-                if memcmp(seq.convertMutable(), termBuf, termLength) == 0 {
-                    result = preLen
+                if data == terminatorData {
+                    result = preLen + termLength
                     found = true
                     break
                 }
@@ -262,7 +258,8 @@ extension SwiftAsyncReadPacket {
                 bufLen -= 1
                 preLen += 1
             } else {
-                if memcmp(pre, termBuf, termLength) == 0 {
+                let targetData = Data(bytes: pre, count: termLength)
+                if targetData == terminatorData {
                     let preOffset = pre - buffers.readPointer
 
                     result = preOffset + termLength
@@ -292,16 +289,15 @@ extension SwiftAsyncReadPacket {
 
         let buffLength = Int(bytesDone) + numberOfBytes
 
-        let termBuff: UnsafePointer<UInt8> = terminatorData.convert()
-
         let termLength: Int = terminatorData.count
 
         var count = ((buffLength - numberOfBytes) >= termLength) ? (buffLength - numberOfBytes - termLength + 1) : 0
 
         while count + termLength <= buffLength {
             let subBuffer: UnsafePointer<UInt8> = buff + Int(startOffset) + count
-
-            if memcmp(subBuffer, termBuff, termLength) == 0 {
+            let compare = Data(bytes: subBuffer, count: termLength)
+            
+            if compare == terminatorData {
                 return buffLength - (count + termLength)
             }
 

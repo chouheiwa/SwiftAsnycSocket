@@ -24,6 +24,10 @@ class UdpServer {
 
         try serverSocket.receiveAlways()
     }
+    
+    func close() {
+        serverSocket.close()
+    }
 }
 extension UdpServer: SwiftAsyncUDPSocketDelegate {
     func updSocket(_ socket: SwiftAsyncUDPSocket,

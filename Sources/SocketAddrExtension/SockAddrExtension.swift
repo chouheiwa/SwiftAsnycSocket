@@ -16,11 +16,6 @@ extension sockaddr {
             return Data(bytes: $0, count: length).withUnsafeBytes { buffer in
                 return buffer.bindMemory(to: sockaddr_in.self).baseAddress!.pointee
             }
-//            return Data(bytes: $0, count: length).withUnsafeBytes({ (buffer: UnsafePointer<sockaddr>) -> sockaddr_in in
-//                return buffer.withMemoryRebound(to: sockaddr_in.self, capacity: 1, {
-//                    $0.pointee
-//                })
-//            })
         }
     }
 

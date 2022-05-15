@@ -82,8 +82,8 @@ extension SwiftAsyncSocket {
         }
         DispatchQueue.global().async { [weak self] in
             guard let `self` = self else { return }
-
-            let result = Darwin.connect(socketFD, address.convert(), socklen_t(address.count))
+            var pointer: UnsafePointer<sockaddr> = address.convert()
+            let result = Darwin.connect(socketFD,pointer, socklen_t(address.count))
             let err = errno
             self.socketQueue.async {
                 guard !self.isConnected else {

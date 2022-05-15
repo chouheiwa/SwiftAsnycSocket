@@ -38,7 +38,11 @@ class Server: SwiftAsyncSocketDelegate {
             fatalError("\(error)")
         }
     }
-
+    
+    deinit {
+        baseSocket.disconnect()
+    }
+    
     func socket(_ socket: SwiftAsyncSocket, didAccept newSocket: SwiftAsyncSocket) {
         /// We use a time and a random number to make key unique
         let random = Int.random(in: 0..<99999)
@@ -57,6 +61,7 @@ class Server: SwiftAsyncSocketDelegate {
     }
 
     func socket(_ socket: SwiftAsyncSocket, didRead data: Data, with tag: Int) {
+        print("Received data:\(String(data: data, encoding: .utf8) ?? "")")
         didReadData?(data)
     }
 

@@ -32,6 +32,7 @@ class SwiftAsyncUDPSocketTest: XCTestCase {
     }
 
     override func tearDown() {
+        server.close()
     }
 
     func testReceiveData() {

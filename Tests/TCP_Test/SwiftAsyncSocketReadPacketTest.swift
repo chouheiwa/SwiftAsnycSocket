@@ -33,13 +33,11 @@ class SwitAsyncReadPacketTest: XCTestCase {
 
         let appendData: Data = "a".data(using: .utf8)!
 
-        let targetData: Data = Data([0x0D, 0x0A])
-
         var startTime = arc4random() % 100
 
         let endTime = arc4random() % 100
 
-        let capcity = startTime + endTime + 2
+        let capcity = Int(startTime) * appendData.count + Int(endTime) * appendData.count + 2
 
         while startTime > 0 {
             readPacket.buffer.append(appendData)
@@ -47,7 +45,7 @@ class SwitAsyncReadPacketTest: XCTestCase {
             startTime -= 1
         }
 
-        readPacket.buffer.append(targetData)
+        readPacket.buffer.append(terminatorData)
 
         for _ in 0..<endTime {
             readPacket.buffer.append(appendData)

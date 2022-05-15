@@ -57,8 +57,6 @@
 		02C6361A21E614520078257D /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635DF21E614510078257D /* Data.swift */; };
 		02C6361B21E614520078257D /* OptionSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E021E614510078257D /* OptionSetExtension.swift */; };
 		02C6361C21E614520078257D /* OptionSetExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E021E614510078257D /* OptionSetExtension.swift */; };
-		02C6361D21E614520078257D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E121E614510078257D /* String.swift */; };
-		02C6361E21E614520078257D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E121E614510078257D /* String.swift */; };
 		02C6362121E614520078257D /* SwiftAsyncSocketPreBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */; };
 		02C6362221E614520078257D /* SwiftAsyncSocketPreBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */; };
 		02C6362321E614520078257D /* SwiftAsyncSocketBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C635E521E614510078257D /* SwiftAsyncSocketBuffer.swift */; };
@@ -216,7 +214,6 @@
 		02C635DD21E614510078257D /* SwiftAsyncThread.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncThread.swift; sourceTree = "<group>"; };
 		02C635DF21E614510078257D /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		02C635E021E614510078257D /* OptionSetExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionSetExtension.swift; sourceTree = "<group>"; };
-		02C635E121E614510078257D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		02C635E421E614510078257D /* SwiftAsyncSocketPreBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketPreBuffer.swift; sourceTree = "<group>"; };
 		02C635E521E614510078257D /* SwiftAsyncSocketBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftAsyncSocketBuffer.swift; sourceTree = "<group>"; };
 		02C635E821E614510078257D /* SocketAddrProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAddrProtocol.swift; sourceTree = "<group>"; };
@@ -505,7 +502,6 @@
 			children = (
 				02C635DF21E614510078257D /* Data.swift */,
 				02C635E021E614510078257D /* OptionSetExtension.swift */,
-				02C635E121E614510078257D /* String.swift */,
 			);
 			path = DataExtension;
 			sourceTree = "<group>";
@@ -943,7 +939,6 @@
 				0262BFE921EC733B00893413 /* SocketDataType.swift in Sources */,
 				02C6366121E614520078257D /* SwiftAsyncSocketError.swift in Sources */,
 				0262BFF121ED77E900893413 /* SwiftAsyncUDPSocket+Sending.swift in Sources */,
-				02C6361D21E614520078257D /* String.swift in Sources */,
 				02C6362521E614520078257D /* SocketAddrProtocol.swift in Sources */,
 				0262BFE721EB4D8900893413 /* SwiftAsyncUDPSocket+Utilities.swift in Sources */,
 				02C6365B21E614520078257D /* SwiftAsyncSocket+Writing.swift in Sources */,
@@ -1023,7 +1018,6 @@
 				0262BFB221E7481600893413 /* SwiftAsyncUDPSendPacket.swift in Sources */,
 				02C6365021E614520078257D /* SwiftAsyncSocket+WriteData.swift in Sources */,
 				02C6366221E614520078257D /* SwiftAsyncSocketError.swift in Sources */,
-				02C6361E21E614520078257D /* String.swift in Sources */,
 				02C6362621E614520078257D /* SocketAddrProtocol.swift in Sources */,
 				02C6365C21E614520078257D /* SwiftAsyncSocket+Writing.swift in Sources */,
 				0262BFEA21EC733B00893413 /* SocketDataType.swift in Sources */,

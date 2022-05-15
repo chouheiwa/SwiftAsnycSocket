@@ -98,21 +98,17 @@ public extension SocketDataType {
 
         var res: UnsafeMutablePointer<addrinfo>?
 
-        var res0: UnsafeMutablePointer<addrinfo>?
-
-        let error = getaddrinfo(host.UTF8String, String(port).UTF8String, &hints, &res0)
+        let error = getaddrinfo(host, String(port), &hints, &res)
 
         guard error == 0 else {
             throw SwiftAsyncSocketError.gaiError(code: error)
         }
         defer {
-            freeaddrinfo(res0)
+            freeaddrinfo(res)
         }
 
         var address4: Data?
         var address6: Data?
-
-        res = res0
 
         while res != nil {
             guard let pointer = res else {
