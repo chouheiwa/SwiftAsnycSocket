@@ -14,7 +14,7 @@ extension SwiftAsyncSocket {
      *  The same question maybe in the SwiftAsyncSocket is that the deadlock
      */
     public func markSocketQueue(newSocketQueue: DispatchQueue) {
-        newSocketQueue.setSpecific(key: queueKey, value: self)
+        newSocketQueue.setSpecific(key: queueKey, value: Weak(self))
     }
 
     public func unmarkSocketQueue(oldSocketQueue: DispatchQueue) {
