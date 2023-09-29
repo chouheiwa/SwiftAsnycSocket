@@ -62,7 +62,7 @@ public class SwiftAsyncUDPSocket: NSObject {
 
     var cachedConnectedAddressStore: SwiftAsyncUDPSocketAddress?
 
-    var queueKey: DispatchSpecificKey<SwiftAsyncUDPSocket> = DispatchSpecificKey<SwiftAsyncUDPSocket>()
+    var queueKey: DispatchSpecificKey<Weak<SwiftAsyncUDPSocket>> = DispatchSpecificKey<Weak<SwiftAsyncUDPSocket>>()
 
     var userDataStore: Any?
 
@@ -86,7 +86,7 @@ public class SwiftAsyncUDPSocket: NSObject {
         }
         super.init()
 
-        self.socketQueue.setSpecific(key: queueKey, value: self)
+        self.socketQueue.setSpecific(key: queueKey, value: Weak(self))
 
         #if os(iOS)
         NotificationCenter.default.addObserver(self,
@@ -103,9 +103,6 @@ public class SwiftAsyncUDPSocket: NSObject {
         socketQueueDo {
             self.close(error: nil)
         }
-
-        delegate = nil
-        delegateQueue = nil
     }
 
     @objc func applicationWillEnterForeGround() {

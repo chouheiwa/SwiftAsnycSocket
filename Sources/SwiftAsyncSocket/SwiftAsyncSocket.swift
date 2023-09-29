@@ -17,6 +17,13 @@ struct SwiftAsyncSocketKeys {
     init() {}
 }
 
+class Weak<T: AnyObject> {
+    weak var value : T?
+    init (_ value: T?) {
+        self.value = value
+    }
+}
+
 public class SwiftAsyncSocket: NSObject {
 
     var flags: SwiftAsyncSocketFlags = []
@@ -88,7 +95,7 @@ public class SwiftAsyncSocket: NSObject {
 
     var lastSSLHandshakeError: OSStatus = 0
 
-    let queueKey: DispatchSpecificKey<SwiftAsyncSocket> = DispatchSpecificKey<SwiftAsyncSocket>()
+    let queueKey: DispatchSpecificKey<Weak<SwiftAsyncSocket>> = DispatchSpecificKey<Weak<SwiftAsyncSocket>>()
 
     var userDataStore: Any?
 
@@ -118,7 +125,7 @@ public class SwiftAsyncSocket: NSObject {
 
         super.init()
 
-        self.socketQueue.setSpecific(key: queueKey, value: self)
+        self.socketQueue.setSpecific(key: queueKey, value: Weak(self))
     }
 
     deinit {
@@ -127,9 +134,6 @@ public class SwiftAsyncSocket: NSObject {
         socketQueueDo {
             self.closeSocket(error: nil)
         }
-
-        delegate = nil
-        delegateQueue = nil
     }
 }
 // MARK: - init Function

@@ -180,6 +180,9 @@ extension SwiftAsyncSocket {
         readSource?.cancel()
         writeSource?.cancel()
 
+        resumeReadSource()
+        resumeWriteSource()
+
         socket4FD = SwiftAsyncSocketKeys.socketNull
         socket6FD = SwiftAsyncSocketKeys.socketNull
         socketUN = SwiftAsyncSocketKeys.socketNull

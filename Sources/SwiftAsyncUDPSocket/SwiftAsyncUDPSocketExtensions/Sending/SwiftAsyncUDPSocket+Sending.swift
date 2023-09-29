@@ -241,7 +241,7 @@ extension SwiftAsyncUDPSocket {
     }
 
     func createSocket(IPv4: Bool, IPv6: Bool) throws {
-        assert(DispatchQueue.getSpecific(key: queueKey) == self, "Must be dispatched on socketQueue")
+        assert(DispatchQueue.getSpecific(key: queueKey)?.value == self, "Must be dispatched on socketQueue")
         assert(!flags.contains(.didCreatSockets), "Sockets have already been created")
 
         if IPv4 {
@@ -271,7 +271,7 @@ extension SwiftAsyncUDPSocket {
     }
 
     private func createSocket(domain: Int32) throws -> Int32 {
-        assert(DispatchQueue.getSpecific(key: queueKey) == self, "Must be dispatched on socketQueue")
+        assert(DispatchQueue.getSpecific(key: queueKey)?.value == self, "Must be dispatched on socketQueue")
 
         let socketFD = Darwin.socket(domain, SOCK_DGRAM, 0)
 

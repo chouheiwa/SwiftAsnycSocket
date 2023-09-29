@@ -103,8 +103,10 @@ public extension SocketDataType {
         guard error == 0 else {
             throw SwiftAsyncSocketError.gaiError(code: error)
         }
+
+        let res0 = res
         defer {
-            freeaddrinfo(res)
+            freeaddrinfo(res0)
         }
 
         var address4: Data?
